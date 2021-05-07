@@ -57,7 +57,18 @@ public class Player : MonoBehaviour
             myRigidbody.velocity = playerVelocity; // actually making character move based on above line
             bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // bool deciding if velocity is higher than 0
             myAnimator.SetBool("New Walking", playerHasHorizontalSpeed); // Toggling on the bool if the character is walking and turning it off if he's not
-
+            bool playerisRunning = Mathf.Abs(myRigidbody.velocity.x) > 1.5f;
+            myAnimator.SetBool("Running", playerisRunning);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    walkSpeed = 4f;
+                }
+                else
+                {
+                    walkSpeed = 1.5f;
+                }
+            }
 
             // Z Axis Movement
             float verticalinputspeed = CrossPlatformInputManager.GetAxis("Vertical");

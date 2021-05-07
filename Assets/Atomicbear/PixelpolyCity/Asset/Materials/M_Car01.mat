@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Car01
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 268020dffd21a7b40bc780f8e9ecd0fc, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
@@ -112,7 +112,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: d3f6b4236bcaa604c9d101ea5e041be3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 64ef4581a9d6f794c975bd469919ddb9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -147,7 +147,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _ToonPow: 0.47
-    - _ToonPower: 0.6
+    - _ToonPower: 0.196
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
