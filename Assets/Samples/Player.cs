@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
         Crouch();
         FlipSprite();
         CharacterCantMove();
-        print(myRigidbody.velocity.x);
     }
     public void CharacterCantMove()
     {
