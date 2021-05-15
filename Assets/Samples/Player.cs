@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] bool isCrouching;
     [SerializeField] bool isWalking;
     [SerializeField] bool freezeCharacter;
+    [SerializeField] public bool birdWhispering;
     
 
     //Cached Component References
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         Crouch();
         FlipSprite();
         CharacterCantMove();
+        Whispering();
     }
     public void CharacterCantMove()
     {
@@ -43,7 +45,23 @@ public class Player : MonoBehaviour
         }
         else if (freezeCharacter)
         {
-            myRigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+    private void Whispering()
+    {
+        // if you press and HOLD Q..
+        if (Input.GetKey(KeyCode.Q))
+        {
+            birdWhispering = true;
+            // freeze character position(animator), do animation
+            myAnimator.SetBool("TalkToBirds", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Q))
+        {
+            birdWhispering = false;
+            // unfreeze character (in animator), do animation to release
+            myAnimator.SetBool("TalkToBirds", false);
         }
     }
     private void Walk()

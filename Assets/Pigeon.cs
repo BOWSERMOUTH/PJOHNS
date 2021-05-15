@@ -7,6 +7,7 @@ public class Pigeon : MonoBehaviour
 {
     [SerializeField] float howCloseToPlayer;
     [SerializeField] Vector3 hopDistance;
+    [SerializeField] bool freezePigeon;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -20,7 +21,7 @@ public class Pigeon : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         myBoxCollider = GetComponent<BoxCollider>();
-        player = GameObject.Find("PJohn");
+        player = GameObject.Find("PJohns");
     }
 
     // Update is called once per frame
@@ -29,6 +30,34 @@ public class Pigeon : MonoBehaviour
         FlipSprite();
         FollowPlayer();
         LookAtPlayer();
+        MoveOnZ();
+        ImListening();
+        FreezePigeon();
+    }
+    private void ImListening()
+    {
+        if (player.GetComponent<Player>().birdWhispering == true)
+        {
+            myAnimator.SetBool("PigeonListen", true);
+            freezePigeon = true;
+        }
+        else if (player.GetComponent<Player>().birdWhispering == false)
+        {
+            freezePigeon = false;
+            myAnimator.SetBool("PigeonListen", false);
+        }
+    }
+    private void FreezePigeon()
+    {
+        if (freezePigeon)
+        {
+            myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else if (!freezePigeon)
+        {
+            myRigidbody.constraints = RigidbodyConstraints.None;
+            myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -50,6 +79,7 @@ public class Pigeon : MonoBehaviour
     {
         if (isTouchingGround)
         {
+            myAnimator.SetBool("Walk", true);
             myRigidbody.velocity = new Vector3((transform.localScale.x * hopDistance.x), hopDistance.y, hopDistance.z);
         }
     }
@@ -57,7 +87,7 @@ public class Pigeon : MonoBehaviour
     {
         if (isTouchingGround)
         {
-            myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 7f)), 4f, 0f);
+            myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 8f)), 4f, 0f);
         }
     }
     private void LookAtPlayer()
@@ -81,8 +111,17 @@ public class Pigeon : MonoBehaviour
         else if (Vector3.Distance(transform.position, targetPosition) > 5f)
         {
             FlyToPlayer();
+            myAnimator.SetBool("Walk", false);
             myAnimator.SetBool("Flying", true);
         }
+        else
+        {
+            myAnimator.SetBool("Walk", false);
+        }
+    }
+    private void MoveOnZ()
+    {
+
     }
     private void FlipSprite()
     {
