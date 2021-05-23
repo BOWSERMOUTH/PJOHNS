@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Interactable
+  - Canvas
+  - Boundaries
   layers:
   - Default
   - TransparentFX
@@ -16,9 +19,9 @@ TagManager:
   - 
   - Player
   - Pigeon
-  - 
-  - 
-  - 
+  - Interactable
+  - Canvas
+  - Boundaries
   - 
   - 
   - 
@@ -44,4 +47,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3904821317
+    locked: 0
+  - name: UI
+    uniqueID: 1747286315
     locked: 0
