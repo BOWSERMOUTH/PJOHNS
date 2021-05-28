@@ -10,6 +10,8 @@ public class Crosshair : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Vector3 originalPos;
     public Camera cam;
+    public GameObject sendBirds;
+    public bool goherenow;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class Crosshair : MonoBehaviour
     }
     private void MoveCrosshair()
     {
+        // If player is whispering to bird
         if (player.GetComponent<Player>().birdWhispering == true)
         {
             float horizontalThrow = CrossPlatformInputManager.GetAxis("Horizontal"); // value is between -1 to +1
@@ -49,9 +52,11 @@ public class Crosshair : MonoBehaviour
         Debug.DrawRay(cam.transform.position, direction * 20f, Color.green);
         if (Physics.Raycast(cam.transform.position, direction, out hit, 20f, layerMask))
         {
-            if (hit.collider.tag == "Interactable")
+            if (hit.collider.tag == "Interactable" && Input.GetKeyUp(KeyCode.Q))
             {
-                Debug.Log("I've hit a dumpster");
+                goherenow = true;
+                Instantiate(sendBirds, hit.point, Quaternion.identity);
+                Debug.Log("I've hit a dumpster & created a new point");
             }
         }
     }

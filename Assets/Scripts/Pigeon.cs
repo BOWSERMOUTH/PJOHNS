@@ -8,6 +8,10 @@ public class Pigeon : MonoBehaviour
     [SerializeField] float howCloseToPlayer;
     [SerializeField] Vector3 hopDistance;
     [SerializeField] bool freezePigeon;
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight;
+    [SerializeField] float stepSmooth;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -33,6 +37,7 @@ public class Pigeon : MonoBehaviour
         MoveOnZ();
         ImListening();
         FreezePigeon();
+        StepClimb();
     }
     private void ImListening()
     {
@@ -119,6 +124,10 @@ public class Pigeon : MonoBehaviour
             myAnimator.SetBool("Walk", false);
         }
     }
+    private void CommandExecute()
+    {
+
+    }
     private void MoveOnZ()
     {
 
@@ -129,6 +138,38 @@ public class Pigeon : MonoBehaviour
         if (whichDirectionPlayerFacing)
         {
             transform.localScale = new Vector3(Mathf.Sign(myRigidbody.velocity.x), 1f, 1f);
+        }
+    }
+    private void StepClimb()
+    {
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        {
+            print("bird feet hit");
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            {
+                print("i hit with knees");
+                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
+        RaycastHit hitLower45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f))
+        {
+            RaycastHit hitUpper45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
+            {
+                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
+        RaycastHit hitLowerMinus45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
+        {
+            RaycastHit hitUpperMinus45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
+            {
+                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
         }
     }
 }
