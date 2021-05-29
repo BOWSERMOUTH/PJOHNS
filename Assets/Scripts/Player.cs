@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     Rigidbody myRigidbody;
     Animator myAnimator;
     BoxCollider myBoxCollider;
+    AudioSource myAudioSource;
+    public AudioClip footstep;
 
     //Other Object References
     GameObject crossHair;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         myAnimator = GetComponent<Animator>();
         myBoxCollider = GetComponent<BoxCollider>();
+        myAudioSource = GetComponent<AudioSource>();
         isCrouching = myAnimator.GetBool("Crouching");
         crossHair = GameObject.Find("crosshair");
         crossHair.GetComponent<SpriteRenderer>().enabled = false;
@@ -116,6 +119,11 @@ public class Player : MonoBehaviour
         {
             CrouchWalking();
         }
+    }
+    public void Footstep()
+    {
+        print("step");
+        myAudioSource.PlayOneShot(footstep, 1.0f);
     }
     private void Crouch()
     {

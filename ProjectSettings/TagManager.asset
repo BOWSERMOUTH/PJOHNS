@@ -9,6 +9,8 @@ TagManager:
   - Canvas
   - Boundaries
   - TrafficGuy
+  - Pigeon
+  - Hotdog
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - Canvas
   - Boundaries
   - TrafficGuy
-  - 
+  - PostProcessing
   - 
   - 
   - 
