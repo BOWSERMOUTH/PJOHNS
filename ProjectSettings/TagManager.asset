@@ -7,10 +7,11 @@ TagManager:
   - Ground
   - Interactable
   - Canvas
-  - Boundaries
   - TrafficGuy
   - Pigeon
   - Hotdog
+  - Boundaries
+  - Pedestrian
   layers:
   - Default
   - TransparentFX
@@ -18,15 +19,15 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - People
+  - PostProcessing
   - Player
   - Pigeon
   - Interactable
   - Canvas
-  - Boundaries
+  - Awareness
   - TrafficGuy
-  - PostProcessing
+  - Boundaries
   - 
   - 
   - 

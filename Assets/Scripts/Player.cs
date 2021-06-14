@@ -6,30 +6,38 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     //Config
+    [SerializeField] float jumpHeight = 3f;
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float crouchSpeed = 3f;
     [SerializeField] bool isCrouching;
-    [SerializeField] bool isWalking;
     [SerializeField] bool freezeCharacter;
-    [SerializeField] public bool birdWhispering;
+    [SerializeField] bool doubleJump;
+    [SerializeField] bool pigeonShield;
+    [SerializeField] bool dismiss;
+    [SerializeField] bool mindControl;
+    [SerializeField] bool fly;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
-    [SerializeField] float stepHeight;
-    [SerializeField] float stepSmooth;
+    private float stepHeight = .5f;
+    private float stepSmooth = 0.1f;
     public bool playerIsWalking;
+    public bool isTouchingGround;
     
 
     //Cached Component References
     Rigidbody myRigidbody;
     Animator myAnimator;
     BoxCollider myBoxCollider;
+    public BoxCollider myFootCollider;
     AudioSource myAudioSource;
     public AudioClip footstep;
 
+
     //Other Object References
     GameObject crossHair;
+    GameObject hotdog;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -39,6 +47,7 @@ public class Player : MonoBehaviour
         isCrouching = myAnimator.GetBool("Crouching");
         crossHair = GameObject.Find("crosshair");
         crossHair.GetComponent<SpriteRenderer>().enabled = false;
+        hotdog = GameObject.Find("Hotdog");
     }
 
     void Update()
@@ -49,6 +58,21 @@ public class Player : MonoBehaviour
         CharacterCantMove();
         Whispering();
         StepClimb();
+    }
+    private void OnTriggerEnter(Collider ground)
+    {
+        if (ground.tag == "Ground")
+        {
+            isTouchingGround = true;
+            myAnimator.SetBool("Jump", false);
+        }
+    }
+    private void OnTriggerExit(Collider ground)
+    {
+        if (ground.tag == "Ground")
+        {
+            isTouchingGround = false;
+        }
     }
     public void CharacterCantMove()
     {
@@ -65,18 +89,23 @@ public class Player : MonoBehaviour
     private void Whispering()
     {
         // if you press and HOLD Q..
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            birdWhispering = true;
-            crossHair.GetComponent<SpriteRenderer>().enabled = true;
+            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
+            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
             // freeze character position(animator), do animation
             myAnimator.SetBool("TalkToBirds", true);
+            myAnimator.SetBool("NewWalking", false);
         }
-        else if (Input.GetKeyUp(KeyCode.Q))
+        else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == false)
         {
-            birdWhispering = false;
-            crossHair.GetComponent<SpriteRenderer>().enabled = false;
+            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.followplayer;
+            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
             // unfreeze character (in animator), do animation to release
+            myAnimator.SetBool("TalkToBirds", false);
+        }
+        else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == true)
+        {
             myAnimator.SetBool("TalkToBirds", false);
         }
     }
@@ -95,6 +124,11 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     walkSpeed = 4f;
+                    if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
+                    {
+                        myAnimator.SetBool("Jump", true);
+                        myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight, myRigidbody.velocity.z);
+                    }
                 }
                 else
                 {
@@ -120,7 +154,7 @@ public class Player : MonoBehaviour
             CrouchWalking();
         }
     }
-    public void Footstep()
+    public void FootstepAudio()
     {
         print("step");
         myAudioSource.PlayOneShot(footstep, 1.0f);
@@ -168,30 +202,31 @@ public class Player : MonoBehaviour
     private void StepClimb()
     {
         RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        LayerMask layerMask = 1 << 0;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f, layerMask))
         {
             print("I've hit on toes");
             RaycastHit hitUpper;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f, layerMask))
             {
                 print("I'm hitting something");
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }
         }
         RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.1f, layerMask))
         {
             RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f, layerMask))
             {
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }
         }
         RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f, layerMask))
         {
             RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f, layerMask))
             {
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }

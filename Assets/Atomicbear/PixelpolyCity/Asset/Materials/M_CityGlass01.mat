@@ -8,13 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_CityGlass01
-  m_Shader: {fileID: 4800000, guid: 268020dffd21a7b40bc780f8e9ecd0fc, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -99,6 +100,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0.0001
     - _BumpScale: 1
@@ -107,7 +109,7 @@ Material:
     - _DstBlend: 10
     - _EmissPow: 1
     - _EmissPow1: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0.667
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
@@ -145,3 +147,4 @@ Material:
     - _SPColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
     - _ToonCol: {r: 0.5377358, g: 0.45403165, b: 0.45403165, a: 1}
+  m_BuildTextureStacks: []

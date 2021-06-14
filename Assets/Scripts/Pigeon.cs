@@ -10,8 +10,8 @@ public class Pigeon : MonoBehaviour
     [SerializeField] bool freezePigeon;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
-    [SerializeField] float stepHeight;
-    [SerializeField] float stepSmooth;
+    private float stepHeight = .5f;
+    private float stepSmooth = 0.1f;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -35,23 +35,23 @@ public class Pigeon : MonoBehaviour
         FollowPlayer();
         LookAtPlayer();
         MoveOnZ();
-        ImListening();
+        //ImListening();
         FreezePigeon();
         StepClimb();
     }
-    private void ImListening()
-    {
-        if (player.GetComponent<Player>().birdWhispering == true)
-        {
-            myAnimator.SetBool("PigeonListen", true);
-            freezePigeon = true;
-        }
-        else if (player.GetComponent<Player>().birdWhispering == false)
-        {
-            freezePigeon = false;
-            myAnimator.SetBool("PigeonListen", false);
-        }
-    }
+    //private void ImListening()
+    //{
+    // if (player.GetComponent<Player>().birdWhispering == true)
+    // {
+    //    myAnimator.SetBool("PigeonListen", true);
+    //   freezePigeon = true;
+    // }
+    // else if (player.GetComponent<Player>().birdWhispering == false)
+    //{
+    //    freezePigeon = false;
+    //    myAnimator.SetBool("PigeonListen", false);
+    // }
+    // }
     private void FreezePigeon()
     {
         if (freezePigeon)
@@ -142,31 +142,21 @@ public class Pigeon : MonoBehaviour
     }
     private void StepClimb()
     {
+        LayerMask layerMask = 1 << 0;
         RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f, layerMask))
         {
-            print("bird feet hit");
             RaycastHit hitUpper;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f, layerMask))
             {
-                print("i hit with knees");
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }
         }
         RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f, layerMask))
         {
             RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
-            {
-                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-            }
-        }
-        RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
-        {
-            RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f, layerMask))
             {
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }

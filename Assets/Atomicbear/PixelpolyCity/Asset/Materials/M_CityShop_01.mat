@@ -100,13 +100,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: d3f6b4236bcaa604c9d101ea5e041be3, type: 3}
+        m_Texture: {fileID: 2800000, guid: a632b027a8013164982447d257f83140, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0.0001
     - _BumpPow: 0.5
@@ -133,7 +134,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _ToonPow: 0.5
-    - _ToonPower: 0.6
+    - _ToonPower: 0.51
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
@@ -148,3 +149,4 @@ Material:
     - _RimTint: {r: 0.070754685, g: 0.5988935, b: 1, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
     - _ToonCol: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

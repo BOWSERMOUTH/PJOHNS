@@ -107,6 +107,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0.0001
     - _BumpPow: 0.5
@@ -146,5 +147,6 @@ Material:
     - _RimCol: {r: 0.9292453, g: 0.97641516, b: 1, a: 1}
     - _RimTint: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
+    - _Tint: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0}
     - _ToonCol: {r: 0.5276344, g: 0.60457796, b: 0.6698113, a: 1}
+  m_BuildTextureStacks: []

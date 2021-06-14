@@ -7,6 +7,8 @@ public class TrafficLight : MonoBehaviour
     [SerializeField] bool greenLight;
     [SerializeField] bool yellowLight;
     [SerializeField] bool redLight;
+    [SerializeField] float interactionduration;
+    private Rigidbody myRigidbody;
     public GameObject green;
     public GameObject yellow;
     public GameObject red;
@@ -14,6 +16,7 @@ public class TrafficLight : MonoBehaviour
     void Start()
     {
         greenLight = true;
+        myRigidbody = gameObject.GetComponent<Rigidbody>();
     }
     private void StreetLightFunction()
     {
@@ -47,4 +50,14 @@ public class TrafficLight : MonoBehaviour
     {
         StreetLightFunction();
     }
+    public void TamperWithTraffic()
+    {
+        StartCoroutine(Wait());
+    }
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(interactionduration);
+        myRigidbody.useGravity = true;
+    }
+
 }
