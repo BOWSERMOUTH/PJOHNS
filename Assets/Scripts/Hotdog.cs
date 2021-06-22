@@ -15,7 +15,6 @@ public class Hotdog : MonoBehaviour
     [SerializeField] float pigeonSpeed = 10f;
     public enum pigeonState { followplayer, followcommand, imlistening}
     public pigeonState hotdogState;
-    public int movementPriority;
     public GameObject wayPoint;
     Animator myAnimator;
     Rigidbody myRigidbody;
@@ -47,7 +46,6 @@ public class Hotdog : MonoBehaviour
         ResetPigeon();
         LookAtPlayerOrWayPoint();
         PigeonState();
-        print(hotdogState);
     }
     private void PigeonState()
     {
@@ -176,7 +174,6 @@ public class Hotdog : MonoBehaviour
         {
             if (isTouchingGround == true)
             {
-                print("Im doing big hop");
                 myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 8f)), 4f, 0f);
                 myAnimator.SetBool("Flying", true);
                 myAnimator.SetBool("Walk", false);
@@ -244,7 +241,6 @@ public class Hotdog : MonoBehaviour
             hotdogState = Hotdog.pigeonState.followplayer;
             crosshair.GetComponent<Crosshair>().thingivehit = null;
             crosshair.GetComponent<Crosshair>().ivehitsomething = false;
-
         }
     }
 }

@@ -6,6 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     //Config
+    [SerializeField] enum playerState { GeneralMovement, Climb, Hide, Whisper, Freeze, MindControl, Frozen }
+    [SerializeField] playerState state;
     [SerializeField] float jumpHeight = 3f;
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 5f;
@@ -20,10 +22,16 @@ public class Player : MonoBehaviour
     [SerializeField] bool fly;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
+    public List<GameObject> pigeonbox = new List<GameObject>();
     private float stepHeight = .5f;
     private float stepSmooth = 0.1f;
     public bool playerIsWalking;
     public bool isTouchingGround;
+    public bool touchingDumpster;
+    public bool touchingLadder;
+    public bool holdingLadder;
+    public bool imWhispering;
+    public bool imHiding;
     
 
     //Cached Component References
@@ -38,6 +46,8 @@ public class Player : MonoBehaviour
     //Other Object References
     GameObject crossHair;
     GameObject hotdog;
+    public GameObject currentDumpster;
+    public GameObject currentLadder;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -52,37 +62,142 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Walk();
-        Crouch();
-        FlipSprite();
         CharacterCantMove();
-        Whispering();
-        StepClimb();
+        PlayerState();
+        FlipSprite();
     }
-    private void OnTriggerEnter(Collider ground)
+    private void PlayerState()
     {
-        if (ground.tag == "Ground")
+        if (state == playerState.GeneralMovement)
+        {
+            Walk();
+            Crouch();
+            StepClimb();
+        }
+        if (state == playerState.Hide)
+        {
+            DumpsterDive();
+        }
+        if (state == playerState.Climb)
+        {
+            ClimbLadder();
+        }
+        if (state == playerState.Whisper)
+        {
+            Whispering();
+        }
+        if (state == playerState.Frozen)
+        {
+            return;
+        }
+    }
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Ground")
         {
             isTouchingGround = true;
             myAnimator.SetBool("Jump", false);
         }
+        if (collider.gameObject.tag == "Dumpster")
+        {
+            currentDumpster = collider.gameObject;
+            touchingDumpster = true;
+        }
+        if (collider.gameObject.tag == "Ladder")
+        {
+            currentLadder = collider.gameObject;
+            touchingLadder = true;
+        }
+        if (collider.gameObject.tag == "TopLadder")
+        {
+            myAnimator.SetBool("Climb", false);
+            myAnimator.SetBool("EndClimb", true);
+        }
     }
-    private void OnTriggerExit(Collider ground)
+    private void OnTriggerExit(Collider collider)
     {
-        if (ground.tag == "Ground")
+        if (collider.tag == "Ground")
         {
             isTouchingGround = false;
         }
+        if (collider.tag == "Dumpster")
+        {
+            touchingDumpster = false;
+            currentDumpster = null;
+        }
+        if (collider.gameObject.tag == "Ladder")
+        {
+            currentLadder = null;
+            touchingLadder = false;
+        }
+    }
+    private void DumpsterDive()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && imHiding == true)
+        {
+            currentDumpster.gameObject.GetComponent<Dumpster>().OutDumpster();
+            myAnimator.SetBool("OutDumpster", true);
+            myAnimator.SetBool("IntoDumpster", false);
+        }
+    }
+    private void ClimbLadder()
+    {
+        // If I Press space while touching the ladder but not holding it yet, Start Climb animation
+        if (Input.GetKeyDown(KeyCode.Space) && touchingLadder == true && holdingLadder == false)
+        {
+            myAnimator.SetBool("Climb", true);
+        }
+        // If I press Space and I'm already holding the ladder, let go of the ladder
+        else if (Input.GetKeyDown(KeyCode.Space) && holdingLadder == true)
+        {
+            holdingLadder = false;
+            myAnimator.SetBool("Climb", false);
+        }
+        // If I'm holding the ladder, only allow up and down movement
+        else if (holdingLadder == true)
+        {
+            myRigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+            myRigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+            float verticalinputspeed = CrossPlatformInputManager.GetAxis("Vertical");
+            Vector3 playerZVelocity = new Vector3(myRigidbody.velocity.x, verticalinputspeed * walkSpeed, myRigidbody.velocity.z);
+            myRigidbody.velocity = playerZVelocity;
+            myAnimator.SetFloat("ClimbSpeed", (.7f * myRigidbody.velocity.y));
+        }
+    }
+    private void EndClimb()
+    {
+        transform.position = new Vector3(transform.position.x, (transform.position.y + .2f), (transform.position.z + .5f));
+        myAnimator.SetBool("EndClimb", false);
+    }
+    private void MovingIntoDumpster()
+    {
+        transform.position = new Vector3(transform.position.x, (transform.position.y + .2f), (transform.position.z + .5f));
+        imHiding = true;
+    }
+    private void MovingOutDumpster()
+    {
+        transform.position = new Vector3(transform.position.x, (transform.position.y - .2f), (transform.position.z - .5f));
+        imHiding = false;
+    }
+    private void GravityOn()
+    {
+        myRigidbody.useGravity = true;
+    }
+    private void GravityOff()
+    {
+        myRigidbody.useGravity = false;
     }
     public void CharacterCantMove()
     {
         if (!freezeCharacter)
         {
+            print("I'm not frozen");
             myRigidbody.constraints = RigidbodyConstraints.None;
             myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else if (freezeCharacter)
         {
+            print("I've frozen");
             myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
@@ -91,22 +206,26 @@ public class Player : MonoBehaviour
         // if you press and HOLD Q..
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
-            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
             // freeze character position(animator), do animation
             myAnimator.SetBool("TalkToBirds", true);
             myAnimator.SetBool("NewWalking", false);
+            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
+            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
+            pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.imlistening;
         }
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == false)
         {
-            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.followplayer;
-            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
             // unfreeze character (in animator), do animation to release
             myAnimator.SetBool("TalkToBirds", false);
+            crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
+            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.followplayer;
+            pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.followplayer;
+
         }
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == true)
         {
             myAnimator.SetBool("TalkToBirds", false);
+            pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.followplayer;
         }
     }
     private void Walk()
@@ -121,7 +240,7 @@ public class Player : MonoBehaviour
             bool playerisRunning = Mathf.Abs(myRigidbody.velocity.x) > 1.5f;
             myAnimator.SetBool("Running", playerisRunning);
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift) && holdingLadder == false)
                 {
                     walkSpeed = 4f;
                     if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
@@ -153,6 +272,17 @@ public class Player : MonoBehaviour
         {
             CrouchWalking();
         }
+        // Transition to Climbing
+        if (touchingLadder == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            myAnimator.SetBool("Climb", true);
+        }
+        // Transition to Hiding
+        if (touchingDumpster == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            currentDumpster.gameObject.GetComponent<Dumpster>().IntoDumpster();
+            myAnimator.SetBool("IntoDumpster", true);
+        }
     }
     public void FootstepAudio()
     {
@@ -164,13 +294,11 @@ public class Player : MonoBehaviour
         // Animation tells isCrouching = true & freezes character until after animation completes
         if (Input.GetKeyDown(KeyCode.C) && (!isCrouching))
         {
-            print("I've pressed C");
             myAnimator.SetBool("Crouching", true);
         }
         // Else if I press C and I am crouching
         else if (Input.GetKeyDown(KeyCode.C) && (isCrouching))
         {
-            print("I've pressed C again");
             myAnimator.SetBool("Crouching", false);
         }
     }

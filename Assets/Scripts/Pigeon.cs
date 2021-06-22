@@ -10,8 +10,10 @@ public class Pigeon : MonoBehaviour
     [SerializeField] bool freezePigeon;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
+    public enum pigeonState { followplayer, notcaptured, imlistening }
+    public pigeonState pigeonstate;
     private float stepHeight = .5f;
-    private float stepSmooth = 0.1f;
+    private float stepSmooth = 0.2f;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -19,6 +21,8 @@ public class Pigeon : MonoBehaviour
     public GameObject player;
     public BoxCollider myFootCollider;
     public bool isTouchingGround;
+    public bool resetpigeon;
+    public bool captured = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,32 +30,38 @@ public class Pigeon : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         myBoxCollider = GetComponent<BoxCollider>();
         player = GameObject.Find("PJohns");
+        pigeonstate = pigeonState.notcaptured;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FlipSprite();
-        FollowPlayer();
-        LookAtPlayer();
-        MoveOnZ();
-        //ImListening();
-        FreezePigeon();
         StepClimb();
+        FlipSprite();
+        LookAtPlayer();
+        PigeonState();
+        ResetPigeon();
     }
-    //private void ImListening()
-    //{
-    // if (player.GetComponent<Player>().birdWhispering == true)
-    // {
-    //    myAnimator.SetBool("PigeonListen", true);
-    //   freezePigeon = true;
-    // }
-    // else if (player.GetComponent<Player>().birdWhispering == false)
-    //{
-    //    freezePigeon = false;
-    //    myAnimator.SetBool("PigeonListen", false);
-    // }
-    // }
+    private void PigeonState()
+    {
+        if (pigeonstate == pigeonState.imlistening)
+        {
+            ImListening();
+        }
+        if (pigeonstate == pigeonState.followplayer)
+        {
+            FollowPlayer();
+        }
+        if (pigeonstate == pigeonState.notcaptured)
+        {
+            myAnimator.SetBool("Idle", true);
+        }
+    }
+    private void ImListening()
+    {
+        myAnimator.SetBool("PigeonListen", true);
+        freezePigeon = true;
+    }
     private void FreezePigeon()
     {
         if (freezePigeon)
@@ -64,6 +74,19 @@ public class Pigeon : MonoBehaviour
             myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
+    private void ResetPigeon()
+    {
+        if (resetpigeon == true)
+        {
+            myAnimator.SetBool("PigeonListen", false);
+            myAnimator.SetBool("Flying", false);
+            myAnimator.SetBool("Jump", false);
+            myAnimator.SetBool("Walk", false);
+            freezePigeon = false;
+            myRigidbody.useGravity = true;
+            resetpigeon = false;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
@@ -72,27 +95,19 @@ public class Pigeon : MonoBehaviour
             myRigidbody.velocity = new Vector3(0f, 0f, 0f);
             myAnimator.SetBool("Flying", false);
         }
+        else if (other.tag == "Player" && captured == false)
+        {
+            print("i've collided with PJOhns");
+            player.GetComponent<Player>().pigeonbox.Add(this.gameObject);
+            captured = true;
+            pigeonstate = pigeonState.followplayer;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Ground")
         {
             isTouchingGround = false;
-        }
-    }
-    private void Hop()
-    {
-        if (isTouchingGround)
-        {
-            myAnimator.SetBool("Walk", true);
-            myRigidbody.velocity = new Vector3((transform.localScale.x * hopDistance.x), hopDistance.y, hopDistance.z);
-        }
-    }
-    private void FlyToPlayer()
-    {
-        if (isTouchingGround)
-        {
-            myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 8f)), 4f, 0f);
         }
     }
     private void LookAtPlayer()
@@ -108,20 +123,33 @@ public class Pigeon : MonoBehaviour
     }
     private void FollowPlayer()
     {
+        myAnimator.SetBool("PigeonListen", false);
         targetPosition = player.transform.position;
         if (Vector3.Distance(transform.position, targetPosition) > howCloseToPlayer && (Vector3.Distance(transform.position, targetPosition) < 5f))
         {
-            Hop();
+            if (isTouchingGround == true)
+            {
+                myAnimator.SetBool("Walk", true);
+                myRigidbody.velocity = new Vector3((transform.localScale.x * hopDistance.x), hopDistance.y, hopDistance.z);
+            }
         }
         else if (Vector3.Distance(transform.position, targetPosition) > 5f)
         {
-            FlyToPlayer();
-            myAnimator.SetBool("Walk", false);
-            myAnimator.SetBool("Flying", true);
+            if (isTouchingGround == true)
+            {
+                myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 8f)), 4f, 0f);
+                myAnimator.SetBool("Flying", true);
+                myAnimator.SetBool("Walk", false);
+            }
         }
         else
         {
             myAnimator.SetBool("Walk", false);
+        }
+        // Move On Z axis
+        if (!freezePigeon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, player.transform.position.z), .5f * Time.deltaTime);
         }
     }
     private void CommandExecute()
@@ -144,7 +172,8 @@ public class Pigeon : MonoBehaviour
     {
         LayerMask layerMask = 1 << 0;
         RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f, layerMask))
+        Debug.DrawRay(stepRayLower.transform.position, transform.TransformDirection(0, 0, transform.localScale.x), Color.green, .1f);
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(0,0,transform.localScale.x), out hitLower, 0.1f, layerMask))
         {
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f, layerMask))
