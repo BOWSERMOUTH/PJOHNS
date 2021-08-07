@@ -53,12 +53,11 @@ public class Crosshair : MonoBehaviour
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
-        print(Camera.main.ViewportToWorldPoint(pos));
     }
     private void Targetting()
     {
         RaycastHit hit;
-        LayerMask layerMask = 1 << 10;
+        LayerMask layerMask = 1 << 11;
         Vector3 direction = (transform.position - cam.transform.position).normalized;
         Ray ray = cam.ScreenPointToRay(direction);
         Debug.DrawRay(cam.transform.position, direction * 15f, Color.green);
@@ -69,7 +68,7 @@ public class Crosshair : MonoBehaviour
             ivehitsomething = true;
             if (Input.GetKeyUp(KeyCode.Q))
             {
-                Instantiate(sendBirds, new Vector3(thingivehit.transform.position.x, thingivehit.transform.position.y, (thingivehit.transform.position.z - 0.2f)) , Quaternion.identity);
+                Instantiate(sendBirds, new Vector3(thingivehit.transform.position.x, thingivehit.transform.position.y, (thingivehit.transform.position.z)) , Quaternion.identity);
                 hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.followcommand;
                 crosshairstate = CrosshairState.isdisabled;
             }

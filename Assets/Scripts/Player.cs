@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
         // If I press Space and I'm already holding the ladder, let go of the ladder
         else if (Input.GetKeyDown(KeyCode.Space) && holdingLadder == true)
         {
+            myRigidbody.useGravity = true;
             holdingLadder = false;
             myAnimator.SetBool("Climb", false);
         }
@@ -191,13 +192,11 @@ public class Player : MonoBehaviour
     {
         if (!freezeCharacter)
         {
-            print("I'm not frozen");
             myRigidbody.constraints = RigidbodyConstraints.None;
             myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else if (freezeCharacter)
         {
-            print("I've frozen");
             myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
@@ -283,10 +282,13 @@ public class Player : MonoBehaviour
             currentDumpster.gameObject.GetComponent<Dumpster>().IntoDumpster();
             myAnimator.SetBool("IntoDumpster", true);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            state = playerState.Whisper;
+        }
     }
     public void FootstepAudio()
     {
-        print("step");
         myAudioSource.PlayOneShot(footstep, 1.0f);
     }
     private void Crouch()

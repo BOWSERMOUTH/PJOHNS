@@ -22,7 +22,6 @@ public class TrafficGuy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("I have collided with Player");
             myAnimator.SetBool("Stop", true);
         }
     }
@@ -30,7 +29,6 @@ public class TrafficGuy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("I have exited");
             myAnimator.SetBool("Stop", false);
         }
     }

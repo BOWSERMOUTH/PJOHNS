@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: d3f6b4236bcaa604c9d101ea5e041be3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0626b924325d1c34cafa6b22297f4e4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -128,6 +128,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimCol: {r: 1, g: 1, b: 1, a: 1}
     - _RimTint: {r: 0, g: 0, b: 0, a: 0}
-    - _Tint: {r: 1, g: 1, b: 1, a: 0}
+    - _Tint: {r: 0, g: 0, b: 0, a: 0}
     - _ToonCol: {r: 0.24301353, g: 0.28988463, b: 0.4056604, a: 1}
   m_BuildTextureStacks: []

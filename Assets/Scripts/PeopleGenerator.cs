@@ -24,7 +24,6 @@ public class PeopleGenerator : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(5f, 10f));
             Instantiate(peoplebox[whichPerson], transform.position, Quaternion.identity);
             generatehuman();
-            print(pedestriancount);
         }
     }
     void Update()

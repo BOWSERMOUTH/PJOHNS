@@ -9,6 +9,7 @@ public class TrafficLight : MonoBehaviour
     [SerializeField] bool redLight;
     [SerializeField] float interactionduration;
     private Rigidbody myRigidbody;
+    public BoxCollider collider;
     public GameObject green;
     public GameObject yellow;
     public GameObject red;
@@ -43,6 +44,13 @@ public class TrafficLight : MonoBehaviour
             red.SetActive(true);
             yellow.SetActive(false);
             green.SetActive(false);
+        }
+    }
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Pigeon" || other.gameObject.tag == "Hotdog")
+        {
+            print("i've touched");
         }
     }
     // Update is called once per frame

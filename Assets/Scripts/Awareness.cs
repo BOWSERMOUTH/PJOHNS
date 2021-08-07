@@ -20,7 +20,6 @@ public class Awareness : MonoBehaviour
     {
         if (other.tag == "Interactable")
         {
-            print("I see something interactable");
             spriteRenderer.enabled = true;
             myAnimator.SetBool("!", true);
         }
@@ -29,7 +28,6 @@ public class Awareness : MonoBehaviour
     {
         if (other.tag == "Interactable")
         {
-            print("I've left something");
             myAnimator.SetBool("!", false);
             spriteRenderer.enabled = false;
         }

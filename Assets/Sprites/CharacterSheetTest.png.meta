@@ -365,6 +365,30 @@ TextureImporter:
   - first:
       213: 2490613696942600392
     second: CharacterSheetTest_67
+  - first:
+      213: 980589476586121865
+    second: CharacterSheetTest_68
+  - first:
+      213: -6336704771911815191
+    second: CharacterSheetTest_69
+  - first:
+      213: 6969925630367710065
+    second: CharacterSheetTest_70
+  - first:
+      213: 6076730088538038254
+    second: CharacterSheetTest_71
+  - first:
+      213: 3866601579096562490
+    second: CharacterSheetTest_72
+  - first:
+      213: 5659791499672713136
+    second: CharacterSheetTest_73
+  - first:
+      213: -1224572253907219490
+    second: CharacterSheetTest_74
+  - first:
+      213: -7114413379910551708
+    second: CharacterSheetTest_75
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1925,6 +1949,174 @@ TextureImporter:
       bones: []
       spriteID: 8c07cf626ff609220800000000000000
       internalID: 2490613696942600392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_68
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98ae66efee0cb9d00800000000000000
+      internalID: 980589476586121865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_69
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ef6caf45908f08a0800000000000000
+      internalID: -6336704771911815191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_70
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 18
+        width: 15
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b35fcbe662ab060800000000000000
+      internalID: 6969925630367710065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_71
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 18
+        width: 18
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eefdc33d1d1e45450800000000000000
+      internalID: 6076730088538038254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_72
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3bd30a66ade8a530800000000000000
+      internalID: 3866601579096562490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_73
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b774c0d16e9b8e40800000000000000
+      internalID: 5659791499672713136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_74
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb8f0ce502710fe0800000000000000
+      internalID: -1224572253907219490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSheetTest_75
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 18
+        width: 16
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467352989b6844d90800000000000000
+      internalID: -7114413379910551708
       vertices: []
       indices: 
       edges: []

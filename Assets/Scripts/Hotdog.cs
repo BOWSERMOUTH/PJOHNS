@@ -15,7 +15,6 @@ public class Hotdog : MonoBehaviour
     [SerializeField] float pigeonSpeed = 10f;
     public enum pigeonState { followplayer, followcommand, imlistening}
     public pigeonState hotdogState;
-    public GameObject wayPoint;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -27,6 +26,7 @@ public class Hotdog : MonoBehaviour
     public bool isTouchingGround;
     public bool resetpigeon;
     public bool atPJohnsArm;
+    public GameObject targetObject = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -131,6 +131,13 @@ public class Hotdog : MonoBehaviour
             isTouchingGround = false;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Interactable")
+        {
+            targetObject = collision.gameObject;
+        }
+    }
 
     // Makes Pigeon look at either player or waypoint
     private void LookAtPlayerOrWayPoint()
@@ -233,14 +240,20 @@ public class Hotdog : MonoBehaviour
         resetpigeon = true;
         myAnimator.SetBool("Flying", true);
         myRigidbody.useGravity = false;
-        wayPoint = GameObject.Find("SendBirds(Clone)");
-        transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, pigeonSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, wayPoint.transform.position) < .5f)
+        targetPosition = GameObject.Find("SendBirds(Clone)").transform.position;
+        //targetPosition = targetObject.transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, pigeonSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, targetPosition) < .5f)
         {
-            Destroy(wayPoint);
-            hotdogState = Hotdog.pigeonState.followplayer;
-            crosshair.GetComponent<Crosshair>().thingivehit = null;
-            crosshair.GetComponent<Crosshair>().ivehitsomething = false;
+            freezePigeon = true;
+            targetObject.SendMessage("killHealth", 5);
+            if (targetObject.GetComponent<ObjectHealth>().health <= 0)
+            {
+                hotdogState = Hotdog.pigeonState.followplayer;
+                crosshair.GetComponent<Crosshair>().thingivehit = null;
+                crosshair.GetComponent<Crosshair>().ivehitsomething = false;
+            }
+            
         }
     }
 }
