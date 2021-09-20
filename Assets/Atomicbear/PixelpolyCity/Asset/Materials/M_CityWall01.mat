@@ -133,7 +133,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _ToonPow: 0.99
-    - _ToonPower: 0.6
+    - _ToonPower: 0.412
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0

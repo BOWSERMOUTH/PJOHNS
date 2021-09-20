@@ -42,11 +42,10 @@ GameObject:
   - component: {fileID: 5574227091976966455}
   - component: {fileID: 5574227091976966448}
   - component: {fileID: 5574227091976966452}
+  - component: {fileID: 5574227091976966459}
   - component: {fileID: 5574227091976966454}
   - component: {fileID: 5574227091976966458}
-  - component: {fileID: 5574227091976966459}
   - component: {fileID: 5574227092461489859}
-  - component: {fileID: 5574227092461489858}
   m_Layer: 8
   m_Name: PJohns
   m_TagString: Player
@@ -159,6 +158,49 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &5574227091976966459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574227091976966449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d992e8bf821f8647b62696b63764d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  jumpHeight: 3
+  walkSpeed: 1
+  runSpeed: 5
+  climbSpeed: 3
+  crouchSpeed: 0.8
+  isCrouching: 0
+  freezeCharacter: 0
+  doubleJump: 0
+  pigeonShield: 0
+  dismiss: 0
+  mindControl: 0
+  fly: 0
+  stepRayUpper: {fileID: 5574227092477323190}
+  stepRayLower: {fileID: 5574227093117408536}
+  pigeonbox: []
+  playerIsWalking: 0
+  isTouchingGround: 0
+  touchingDumpster: 0
+  touchingLadder: 0
+  holdingLadder: 0
+  imWhispering: 0
+  imHiding: 0
+  myFootCollider: {fileID: 5574227091976966458}
+  footstep: {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 97c32996368a40b4face6758d1e0b4dd, type: 3}
+  - {fileID: 8300000, guid: fb8cd9d31bd8a7e4c806b2e07fccff15, type: 3}
+  - {fileID: 8300000, guid: d75d9e68335ee584b95b68606b0362c7, type: 3}
+  currentDumpster: {fileID: 0}
+  currentLadder: {fileID: 0}
 --- !u!65 &5574227091976966454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -185,44 +227,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.08, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5574227091976966459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574227091976966449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992e8bf821f8647b62696b63764d9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpHeight: 3
-  walkSpeed: 1
-  runSpeed: 5
-  climbSpeed: 3
-  crouchSpeed: 0.8
-  isCrouching: 0
-  freezeCharacter: 0
-  doubleJump: 0
-  pigeonShield: 0
-  dismiss: 0
-  mindControl: 0
-  fly: 0
-  stepRayUpper: {fileID: 5574227092477323190}
-  stepRayLower: {fileID: 5574227093117408536}
-  pigeonbox: []
-  playerIsWalking: 0
-  isTouchingGround: 0
-  touchingDumpster: 0
-  touchingLadder: 0
-  holdingLadder: 0
-  imWhispering: 0
-  imHiding: 0
-  myFootCollider: {fileID: 5574227091976966458}
-  footstep: {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
-  currentDumpster: {fileID: 0}
-  currentLadder: {fileID: 0}
 --- !u!82 &5574227092461489859
 AudioSource:
   m_ObjectHideFlags: 0
@@ -236,7 +240,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.668
-  m_Pitch: 0.77
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -319,30 +323,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!167 &5574227092461489858
-AudioReverbZone:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574227091976966449}
-  m_Enabled: 1
-  m_MinDistance: 0
-  m_MaxDistance: 7.57
-  m_ReverbPreset: 1
-  m_Room: -1000
-  m_RoomHF: -100
-  m_DecayTime: 1.49
-  m_DecayHFRatio: 0.83
-  m_Reflections: -2602
-  m_ReflectionsDelay: 0.007
-  m_Reverb: 200
-  m_ReverbDelay: 0.011
-  m_HFReference: 5000
-  m_Diffusion: 100
-  m_Density: 100
-  m_LFReference: 250
-  m_RoomLF: 0
 --- !u!1 &5574227092477323190
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3600236861282870457
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -9,18 +22,23 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MomWindow
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON _METALLICGLOSSMAP
+  m_ShaderKeywords: _ALPHABLEND_ON _METALLICGLOSSMAP _METALLICSPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoMap:
+        m_Texture: {fileID: 2800000, guid: 07c5fc64f27ed0a42863d7341caf9276, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 07c5fc64f27ed0a42863d7341caf9276, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -108,16 +126,35 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0.0001
+    - _AlphaClip: 0
+    - _Blend: 0
     - _BumpPow: 0.5
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _Cull: 2
     - _Cutoff: 0.67
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _EmissPow: 1
     - _EmissPow1: 1
+    - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0.53
     - _GlossyReflections: 1
@@ -126,16 +163,21 @@ Material:
     - _OcclusionStrength: 1
     - _OutLine: 1
     - _Parallax: 0.02
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _RimOffset: 1
     - _RimPow: 0.5
     - _RimPower: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSomething: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 5
+    - _Surface: 1
     - _ToonPow: 0.99
     - _ToonPower: 0.6
     - _UVSec: 0
+    - _WorkflowMode: 1
     - _ZWrite: 0
     - __dirty: 0
     - _max: 1.4
@@ -143,6 +185,7 @@ Material:
     - _specIntensity: 0.5
     m_Colors:
     - _ASEOutlineColor: {r: 0.3301887, g: 0.29128903, b: 0.26010147, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.14117648}
     - _Color: {r: 1, g: 1, b: 1, a: 0.14117648}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimCol: {r: 0.9292453, g: 0.97641516, b: 1, a: 1}

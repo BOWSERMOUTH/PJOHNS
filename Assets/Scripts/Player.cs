@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     //Config
-    [SerializeField] enum playerState { GeneralMovement, Climb, Hide, Whisper, Freeze, MindControl, Frozen }
+    public enum playerState { GeneralMovement, Climb, Hide, Whisper, Freeze, MindControl, Frozen, Transition }
     [SerializeField] playerState state;
     [SerializeField] float jumpHeight = 3f;
     [SerializeField] float walkSpeed = 5f;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
     public BoxCollider myFootCollider;
     AudioSource myAudioSource;
     public AudioClip footstep;
+    public AudioClip[] audioClips;
+    Text actionText;
 
 
     //Other Object References
@@ -54,10 +57,11 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBoxCollider = GetComponent<BoxCollider>();
         myAudioSource = GetComponent<AudioSource>();
-        isCrouching = myAnimator.GetBool("Crouching");
         crossHair = GameObject.Find("crosshair");
         crossHair.GetComponent<SpriteRenderer>().enabled = false;
+        actionText = GameObject.Find("ActionText").GetComponent<Text>();
         hotdog = GameObject.Find("Hotdog");
+
     }
 
     void Update()
@@ -88,7 +92,12 @@ public class Player : MonoBehaviour
         }
         if (state == playerState.Frozen)
         {
-            return;
+            myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        if (state == playerState.Transition)
+        {
+            TransitionExit();
+            StepClimb();
         }
     }
     private void OnTriggerEnter(Collider collider)
@@ -113,6 +122,17 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("Climb", false);
             myAnimator.SetBool("EndClimb", true);
         }
+        if (collider.gameObject.tag == "Lock")
+        {
+            if (state != playerState.Transition)
+            {
+                state = playerState.Transition;
+            }
+            if (state == playerState.Transition)
+            {
+                state = playerState.GeneralMovement;
+            }
+        }
     }
     private void OnTriggerExit(Collider collider)
     {
@@ -131,20 +151,54 @@ public class Player : MonoBehaviour
             touchingLadder = false;
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Lock")
+        {
+            actionText.text = "Leave?";
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                state = playerState.Transition;
+                collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+                collision.gameObject.GetComponent<Transition>().StartCoroutine("FadeOutAndTransition");
+            }
+        }
+        else
+        {
+            actionText.text = null;
+        }
+    }
     private void DumpsterDive()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && imHiding == true)
+        if (imHiding == false)
+        {
+            myRigidbody.velocity = new Vector3(0, 0, 0);
+            currentDumpster.gameObject.GetComponent<Dumpster>().IntoDumpster();
+            myAnimator.SetBool("IntoDumpster", true);
+            imHiding = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && imHiding == true)
         {
             currentDumpster.gameObject.GetComponent<Dumpster>().OutDumpster();
             myAnimator.SetBool("OutDumpster", true);
             myAnimator.SetBool("IntoDumpster", false);
+            imHiding = false;
+            state = playerState.GeneralMovement;
         }
+    }
+    private void TransitionExit()
+    {
+        GameObject.Find("FollowPlayer").active = false;
+        myAnimator.SetBool("Walking", true);
+        myAnimator.SetBool("Running", true);
+        myRigidbody.velocity = new Vector2((transform.localScale.x * runSpeed/2f), myRigidbody.velocity.y);
     }
     private void ClimbLadder()
     {
         // If I Press space while touching the ladder but not holding it yet, Start Climb animation
         if (Input.GetKeyDown(KeyCode.Space) && touchingLadder == true && holdingLadder == false)
         {
+            myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             myAnimator.SetBool("Climb", true);
         }
         // If I press Space and I'm already holding the ladder, let go of the ladder
@@ -169,16 +223,15 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, (transform.position.y + .2f), (transform.position.z + .5f));
         myAnimator.SetBool("EndClimb", false);
+        state = playerState.GeneralMovement;
     }
     private void MovingIntoDumpster()
     {
         transform.position = new Vector3(transform.position.x, (transform.position.y + .2f), (transform.position.z + .5f));
-        imHiding = true;
     }
     private void MovingOutDumpster()
     {
         transform.position = new Vector3(transform.position.x, (transform.position.y - .2f), (transform.position.z - .5f));
-        imHiding = false;
     }
     private void GravityOn()
     {
@@ -205,24 +258,26 @@ public class Player : MonoBehaviour
         // if you press and HOLD Q..
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // freeze character position(animator), do animation
+            // Whisper to birds while holding Q
             myAnimator.SetBool("TalkToBirds", true);
-            myAnimator.SetBool("NewWalking", false);
+            myAnimator.SetBool("Walking", false);
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
             hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
             pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.imlistening;
         }
+        // If you let go of Q after hitting nothing, -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == false)
         {
-            // unfreeze character (in animator), do animation to release
             myAnimator.SetBool("TalkToBirds", false);
+            state = Player.playerState.GeneralMovement;
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
-            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.followplayer;
+            hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.resetpigeon;
             pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.followplayer;
-
         }
+        // If you let go of Q after hitting something -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == true)
         {
+            state = Player.playerState.GeneralMovement;
             myAnimator.SetBool("TalkToBirds", false);
             pigeonbox[0].GetComponent<Pigeon>().pigeonstate = Pigeon.pigeonState.followplayer;
         }
@@ -244,6 +299,8 @@ public class Player : MonoBehaviour
                     walkSpeed = 4f;
                     if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
                     {
+                        myAudioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+                        myAudioSource.Play();
                         myAnimator.SetBool("Jump", true);
                         myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight, myRigidbody.velocity.z);
                     }
@@ -265,7 +322,7 @@ public class Player : MonoBehaviour
             {
                 playerIsWalking= true;
             }
-            myAnimator.SetBool("New Walking", playerIsWalking);
+            myAnimator.SetBool("Walking", playerIsWalking);
         }
         else if (isCrouching)
         {
@@ -274,13 +331,13 @@ public class Player : MonoBehaviour
         // Transition to Climbing
         if (touchingLadder == true && Input.GetKeyDown(KeyCode.Space))
         {
+            state = Player.playerState.Climb;
             myAnimator.SetBool("Climb", true);
         }
         // Transition to Hiding
         if (touchingDumpster == true && Input.GetKeyDown(KeyCode.Space))
         {
-            currentDumpster.gameObject.GetComponent<Dumpster>().IntoDumpster();
-            myAnimator.SetBool("IntoDumpster", true);
+            state = Player.playerState.Hide;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -333,13 +390,12 @@ public class Player : MonoBehaviour
     {
         RaycastHit hitLower;
         LayerMask layerMask = 1 << 0;
+        Debug.DrawRay(stepRayLower.transform.position, transform.TransformDirection(0, 0, transform.localScale.x), Color.green, .1f);
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f, layerMask))
         {
-            print("I've hit on toes");
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f, layerMask))
             {
-                print("I'm hitting something");
                 myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
             }
         }

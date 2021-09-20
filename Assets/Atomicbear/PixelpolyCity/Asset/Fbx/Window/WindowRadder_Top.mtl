@@ -1,0 +1,28 @@
+# Blender MTL File: 'scaffold.blend'
+# Material Count: 2
+
+newmtl Material.002
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_D.png
+map_d C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_D.png
+refl C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_M.png
+
+newmtl Material.003
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_D.png
+map_d C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_D.png
+refl C:\\Users\\Jeff\\Documents\\Unity Projects\\P.Johns 3D\\Assets\\Atomicbear\\PixelpolyCity\\Asset\\Materials\\Texture\\T_CityAlpha01_M.png

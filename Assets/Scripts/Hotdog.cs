@@ -5,7 +5,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Hotdog : MonoBehaviour
 {
-    [SerializeField] float howCloseToPlayer;
     [SerializeField] Vector3 hopDistance;
     [SerializeField] bool freezePigeon;
     [SerializeField] GameObject stepRayUpper;
@@ -13,8 +12,9 @@ public class Hotdog : MonoBehaviour
     private float stepHeight = .5f;
     private float stepSmooth = 0.1f;
     [SerializeField] float pigeonSpeed = 10f;
-    public enum pigeonState { followplayer, followcommand, imlistening}
+    public enum pigeonState { followplayer, followcommand, imlistening, returntoplayer, resetpigeon}
     public pigeonState hotdogState;
+    public GameObject target;
     Animator myAnimator;
     Rigidbody myRigidbody;
     BoxCollider myBoxCollider;
@@ -36,14 +36,13 @@ public class Hotdog : MonoBehaviour
         player = GameObject.Find("PJohns");
         crosshair = GameObject.Find("crosshair");
         playerArm = GameObject.Find("Arm");
+        target = player;
     }
 
     // Update is called once per frame
     void Update()
     {
         StepClimb();
-        FlipSprite();
-        ResetPigeon();
         LookAtPlayerOrWayPoint();
         PigeonState();
     }
@@ -61,12 +60,29 @@ public class Hotdog : MonoBehaviour
         {
             FollowCommand();
         }
+        if (hotdogState == pigeonState.returntoplayer)
+        {
+            Return2Player();
+        }
+        if (hotdogState == pigeonState.resetpigeon)
+        {
+            ResetPigeon();
+        }
     }
-
+    private void Return2Player()
+    {
+        target = player;
+        myAnimator.SetBool("Flying", true);
+        myRigidbody.velocity = new Vector3(0f, 0f, 0f);
+        transform.position = Vector3.MoveTowards(transform.position, playerArm.transform.position, pigeonSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, playerArm.transform.position) <= .1f)
+        {
+            crosshair.GetComponent<Crosshair>().thingivehit = null;
+            hotdogState = pigeonState.resetpigeon;
+        }
+    }
     private void ImListening()
     {
-        // Pigeon Resets Velocity & Flys To Player In 0 Gravity
-        resetpigeon = true;
         myRigidbody.velocity = new Vector3(0f, 0f, 0f);
         transform.position = Vector3.MoveTowards(transform.position, playerArm.transform.position, pigeonSpeed * Time.deltaTime);
         myRigidbody.useGravity = false;
@@ -76,19 +92,13 @@ public class Hotdog : MonoBehaviour
         // If I'm At PJOHNs Arm, Go Behind Him & Freeze My Position While Standing Still
         if (transform.position == playerArm.transform.position)
         {
-            atPJohnsArm = true;
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
             myAnimator.SetBool("Flying", false);
             freezePigeon = true;
         }
-        else
-        {
-            atPJohnsArm = false;
-        }
     }
     private void ResetPigeon()
     {
-        if (resetpigeon == true)
         {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
             myAnimator.SetBool("PigeonListen", false);
@@ -98,6 +108,7 @@ public class Hotdog : MonoBehaviour
             freezePigeon = false;
             myRigidbody.useGravity = true;
             resetpigeon = false;
+            hotdogState = pigeonState.followplayer;
         }
     }
     private void FreezePigeon()
@@ -122,6 +133,11 @@ public class Hotdog : MonoBehaviour
             myAnimator.SetBool("Flying", false);
             myAnimator.SetBool("Walk", true);
         }
+        if (other.tag == "Carryable")
+        {
+            transform.localScale = new Vector3((transform.localScale.x * -1f), transform.localScale.y, transform.localScale.z);
+            hotdogState = pigeonState.returntoplayer;
+        }
     }
     // If Pigeon is not touching ground, istouchingground = false
     private void OnTriggerExit(Collider other)
@@ -142,34 +158,21 @@ public class Hotdog : MonoBehaviour
     // Makes Pigeon look at either player or waypoint
     private void LookAtPlayerOrWayPoint()
     {
-        if (crosshair.GetComponent<Crosshair>().ivehitsomething == false)
-        {
-            if (transform.position.x < player.transform.position.x)
+            if (transform.position.x < target.transform.position.x)
             {
                 transform.localScale = new Vector3(1f, 1f, 1f);
             }
-            else if (transform.position.x > player.transform.position.x)
+            // Look left
+            else if (transform.position.x > target.transform.position.x)
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
             }
-        }
-        else if (crosshair.GetComponent<Crosshair>().ivehitsomething == true && atPJohnsArm == true)
-        {
-            if (transform.position.x < crosshair.GetComponent<Crosshair>().thingivehit.position.x)
-            {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-            }
-            else if (transform.position.x > crosshair.GetComponent<Crosshair>().thingivehit.position.x)
-            {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
-        }
     }
     // Hops in direction of PJohn
     private void FollowPlayer()
     {
-        targetPosition = player.transform.position;
-        if (Vector3.Distance(transform.position, targetPosition) > howCloseToPlayer && (Vector3.Distance(transform.position, targetPosition) < 5f))
+        target = player.gameObject;
+        if (Vector3.Distance(transform.position, target.transform.position) > 1f && (Vector3.Distance(transform.position, target.transform.position) < 5f))
         {
             if (isTouchingGround == true)
             {
@@ -177,7 +180,7 @@ public class Hotdog : MonoBehaviour
                 myRigidbody.velocity = new Vector3((transform.localScale.x * hopDistance.x), hopDistance.y, hopDistance.z);
             }
         }
-        else if (Vector3.Distance(transform.position, targetPosition) > 5f)
+        else if (Vector3.Distance(transform.position, target.transform.position) > 5f)
         {
             if (isTouchingGround == true)
             {
@@ -237,13 +240,12 @@ public class Hotdog : MonoBehaviour
     }
     private void FollowCommand()
     {
-        resetpigeon = true;
+        myAnimator.SetBool("Idle", false);
+        myAnimator.SetBool("Walk", false);
         myAnimator.SetBool("Flying", true);
         myRigidbody.useGravity = false;
-        targetPosition = GameObject.Find("SendBirds(Clone)").transform.position;
-        //targetPosition = targetObject.transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, pigeonSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, targetPosition) < .5f)
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, pigeonSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)
         {
             freezePigeon = true;
             targetObject.SendMessage("killHealth", 5);
@@ -253,7 +255,6 @@ public class Hotdog : MonoBehaviour
                 crosshair.GetComponent<Crosshair>().thingivehit = null;
                 crosshair.GetComponent<Crosshair>().ivehitsomething = false;
             }
-            
         }
     }
 }

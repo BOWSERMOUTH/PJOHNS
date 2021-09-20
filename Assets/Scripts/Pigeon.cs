@@ -5,7 +5,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Pigeon : MonoBehaviour
 {
-    [SerializeField] float howCloseToPlayer;
     [SerializeField] Vector3 hopDistance;
     [SerializeField] bool freezePigeon;
     [SerializeField] GameObject stepRayUpper;
@@ -125,7 +124,7 @@ public class Pigeon : MonoBehaviour
     {
         myAnimator.SetBool("PigeonListen", false);
         targetPosition = player.transform.position;
-        if (Vector3.Distance(transform.position, targetPosition) > howCloseToPlayer && (Vector3.Distance(transform.position, targetPosition) < 5f))
+        if (Vector3.Distance(transform.position, targetPosition) > 1f && (Vector3.Distance(transform.position, targetPosition) < 5f))
         {
             if (isTouchingGround == true)
             {

@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 0.3, z: 0.5}
-  m_Center: {x: 0, y: 0.15, z: -0.05}
+  m_Size: {x: 1.6, y: 0.48, z: 0.5}
+  m_Center: {x: 0, y: 0.24, z: -0.05}
 --- !u!1001 &1675020508563285090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,18 +54,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 164.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.016
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
         type: 3}
@@ -81,16 +96,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c389705f701f324c8c4a7cad4aecc4e,
         type: 3}
