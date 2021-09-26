@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class Transition : MonoBehaviour
 {
     private GameObject player;
-    private Collider lockcollider;
+    public Collider lockcollider;
     private Scene sceneName;
     private string sceneString;
+    [SerializeField] bool flipzone;
+    public float flipfloat;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +18,26 @@ public class Transition : MonoBehaviour
         lockcollider = gameObject.GetComponent<BoxCollider>();
         sceneName = SceneManager.GetActiveScene();
         sceneString = sceneName.name;
-        GameObject.Find("FadeToBlack").GetComponent<FadeBlack>().FadeFromBlack();
+        FlipTheZone();
+        print(lockcollider.transform.position.x * flipfloat);
     }
     public IEnumerator FadeOutAndTransition()
     {
         GameObject.Find("FadeToBlack").GetComponent<FadeBlack>().Fade2Black();
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(levels.ToString());
+    }
+    private void FlipTheZone()
+    {
+        if (flipzone == true)
+        {
+            flipfloat = -1f;
+            print("this happened");
+        }
+        else if (flipzone == false)
+        {
+            flipfloat = 1f;
+        }
     }
     public enum Levels
     {
@@ -34,11 +49,11 @@ public class Transition : MonoBehaviour
     public Levels levels;
     private void IsTrigger()
     {
-        if (player.transform.position.x < transform.position.x)
+        if (player.transform.position.x < (transform.position.x * flipfloat))
         {
             lockcollider.isTrigger = true;
         }
-        if (player.transform.position.x > transform.position.x)
+        if ((player.transform.position.x * flipfloat) > (transform.position.x * flipfloat))
         {
             lockcollider.isTrigger = false;
         }

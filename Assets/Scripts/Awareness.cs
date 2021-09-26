@@ -8,6 +8,7 @@ public class Awareness : MonoBehaviour
     private Animator myAnimator;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject exclaim;
+    [SerializeField] private AudioSource exclaimsound;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class Awareness : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         myAnimator = exclaim.GetComponent<Animator>();
         spriteRenderer = exclaim.GetComponent<SpriteRenderer>();
+        exclaimsound = exclaim.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +24,7 @@ public class Awareness : MonoBehaviour
         {
             spriteRenderer.enabled = true;
             myAnimator.SetBool("!", true);
+            exclaimsound.Play();
         }
     }
     private void OnTriggerExit(Collider other)

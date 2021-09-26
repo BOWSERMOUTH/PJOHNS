@@ -25,10 +25,15 @@ public class FadeBlack : MonoBehaviour
     }
     public void FadeFromBlack()
     {
+        print("I'm faded");
         Color alpha = image.color;
         alpha.a = 1f;
         image.color = alpha;
         image.CrossFadeAlpha(1f, 0f, true);
         image.CrossFadeAlpha(0, 1.5f, false);
+    }
+    private void Update()
+    {
+        
     }
 }

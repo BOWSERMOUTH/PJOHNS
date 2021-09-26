@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     public AudioClip footstep;
     public AudioClip[] audioClips;
     Text actionText;
-
+    private GameObject followcam = null;
 
     //Other Object References
     GameObject crossHair;
@@ -61,7 +62,6 @@ public class Player : MonoBehaviour
         crossHair.GetComponent<SpriteRenderer>().enabled = false;
         actionText = GameObject.Find("ActionText").GetComponent<Text>();
         hotdog = GameObject.Find("Hotdog");
-
     }
 
     void Update()
@@ -131,6 +131,8 @@ public class Player : MonoBehaviour
             if (state == playerState.Transition)
             {
                 state = playerState.GeneralMovement;
+                followcam = GameObject.Find("FollowPlayer");
+                followcam.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
             }
         }
     }
@@ -188,7 +190,6 @@ public class Player : MonoBehaviour
     }
     private void TransitionExit()
     {
-        GameObject.Find("FollowPlayer").active = false;
         myAnimator.SetBool("Walking", true);
         myAnimator.SetBool("Running", true);
         myRigidbody.velocity = new Vector2((transform.localScale.x * runSpeed/2f), myRigidbody.velocity.y);

@@ -83,6 +83,7 @@ public class Hotdog : MonoBehaviour
     }
     private void ImListening()
     {
+        target = player;
         myRigidbody.velocity = new Vector3(0f, 0f, 0f);
         transform.position = Vector3.MoveTowards(transform.position, playerArm.transform.position, pigeonSpeed * Time.deltaTime);
         myRigidbody.useGravity = false;
