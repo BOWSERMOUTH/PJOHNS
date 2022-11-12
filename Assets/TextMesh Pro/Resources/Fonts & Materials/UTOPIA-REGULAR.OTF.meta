@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: eadfe389005dec048b1e7b90d9ddf220
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Utopia
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c22fa1a943b839f46ad7e69904ee7be6, type: 3}
+  - {fileID: 12800000, guid: c3e3de40fd1dda146a5e01063ba6995a, type: 3}
+  - {fileID: 12800000, guid: 402ffa1f7627689429db6c91dabe5cde, type: 3}
+  - {fileID: 12800000, guid: 0453d2539a02b5a4f81d2c2cfee7139c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

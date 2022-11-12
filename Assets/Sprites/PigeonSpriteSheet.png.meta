@@ -1,0 +1,626 @@
+fileFormatVersion: 2
+guid: c75edcbc582125743ab965267f67c4de
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6223140972110480791
+    second: PigeonSpriteSheet_0
+  - first:
+      213: 924893854263242022
+    second: PigeonSpriteSheet_1
+  - first:
+      213: 7510838368009320622
+    second: PigeonSpriteSheet_2
+  - first:
+      213: 8202935282030852212
+    second: PigeonSpriteSheet_3
+  - first:
+      213: 7033466061317949708
+    second: PigeonSpriteSheet_4
+  - first:
+      213: 5587573520493045023
+    second: PigeonSpriteSheet_5
+  - first:
+      213: 5421291173835153350
+    second: PigeonSpriteSheet_6
+  - first:
+      213: -4492672294559055383
+    second: PigeonSpriteSheet_0
+  - first:
+      213: -872872657486485040
+    second: PigeonSpriteSheet_1
+  - first:
+      213: -2125368167593591353
+    second: PigeonSpriteSheet_2
+  - first:
+      213: -2481847361919370985
+    second: PigeonSpriteSheet_3
+  - first:
+      213: -6637282521927399240
+    second: PigeonSpriteSheet_4
+  - first:
+      213: 754429295559346199
+    second: PigeonSpriteSheet_5
+  - first:
+      213: -1662437200896920081
+    second: PigeonSpriteSheet_6
+  - first:
+      213: -3699289728987933137
+    second: PigeonSpriteSheet_7
+  - first:
+      213: -8198918115016207091
+    second: PigeonSpriteSheet_8
+  - first:
+      213: 849509824890398174
+    second: PigeonSpriteSheet_9
+  - first:
+      213: -6313112942543678377
+    second: PigeonSpriteSheet_10
+  - first:
+      213: -8452058947317823880
+    second: PigeonSpriteSheet_11
+  - first:
+      213: -4946807874034974159
+    second: PigeonSpriteSheet_12
+  - first:
+      213: 621846854749396255
+    second: PigeonSpriteSheet_13
+  - first:
+      213: 1168688852941496024
+    second: PigeonSpriteSheet_7
+  - first:
+      213: 4201846657495387462
+    second: PigeonSpriteSheet_8
+  - first:
+      213: 7499168289440957048
+    second: PigeonSpriteSheet_9
+  - first:
+      213: -7741019330705446070
+    second: PigeonSpriteSheet_10
+  - first:
+      213: -945464048219747021
+    second: PigeonSpriteSheet_11
+  - first:
+      213: -1337882143866389778
+    second: PigeonSpriteSheet_12
+  - first:
+      213: -1881199541952572556
+    second: PigeonSpriteSheet_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79503d51eb90d5650800000000000000
+      internalID: 6223140972110480791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 31
+        width: 6
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d6d466f02e5dc00800000000000000
+      internalID: 924893854263242022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 31
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea8f19a93bbdb3860800000000000000
+      internalID: 7510838368009320622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 31
+        width: 7
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478b7f09d2ea6d170800000000000000
+      internalID: 8202935282030852212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 31
+        width: 7
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c094f9c2e14eb9160800000000000000
+      internalID: 7033466061317949708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 31
+        width: 7
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15ed5d338c0b8d40800000000000000
+      internalID: 5587573520493045023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 30
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf9760799b4c3b40800000000000000
+      internalID: 5421291173835153350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f265c66579b79acc0800000000000000
+      internalID: -3699289728987933137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 16
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0591f30a67973e80800000000000000
+      internalID: -8198918115016207091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 16
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5ebc15fa01acb00800000000000000
+      internalID: 849509824890398174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 16
+        width: 7
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75453c02a315368a0800000000000000
+      internalID: -6313112942543678377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 16
+        width: 7
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87685781b2144ba80800000000000000
+      internalID: -8452058947317823880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 16
+        width: 7
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1324a08a278695bb0800000000000000
+      internalID: -4946807874034974159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 15
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d18027b6e31a800800000000000000
+      internalID: 621846854749396255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7458b29d7cb5c248b564082640e1d08
+      internalID: 1211185465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 7
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc16b442f84421c448e7da59450bf6d6
+      internalID: -1069680138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 7
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dea68705b0272724cb93bcad5cff8f08
+      internalID: -349327317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PigeonSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 0
+        width: 7
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af3a280c1f1122047a211e03df6aaf3f
+      internalID: -1433321027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PigeonSpriteSheet_2: 7510838368009320622
+      PigeonSpriteSheet_10: -6313112942543678377
+      PigeonSpriteSheet_8: -8198918115016207091
+      PigeonSpriteSheet_0: 6223140972110480791
+      PigeonSpriteSheet_11: -8452058947317823880
+      PigeonSpriteSheet_14: 1211185465
+      PigeonSpriteSheet_12: -4946807874034974159
+      PigeonSpriteSheet_3: 8202935282030852212
+      PigeonSpriteSheet_1: 924893854263242022
+      PigeonSpriteSheet_17: -1433321027
+      PigeonSpriteSheet_13: 621846854749396255
+      PigeonSpriteSheet_6: 5421291173835153350
+      PigeonSpriteSheet_16: -349327317
+      PigeonSpriteSheet_9: 849509824890398174
+      PigeonSpriteSheet_15: -1069680138
+      PigeonSpriteSheet_4: 7033466061317949708
+      PigeonSpriteSheet_7: -3699289728987933137
+      PigeonSpriteSheet_5: 5587573520493045023
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

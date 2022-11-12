@@ -1,0 +1,1283 @@
+fileFormatVersion: 2
+guid: 31f6eaa2a25deaf40b701c8d243b3975
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1159701905551026462
+    second: OtherPeopleSheet_0
+  - first:
+      213: 3696985004106135934
+    second: OtherPeopleSheet_1
+  - first:
+      213: 7965462969080683213
+    second: OtherPeopleSheet_2
+  - first:
+      213: -3965656983202611236
+    second: OtherPeopleSheet_3
+  - first:
+      213: 3243903970783471065
+    second: OtherPeopleSheet_4
+  - first:
+      213: -2443842082809821946
+    second: OtherPeopleSheet_5
+  - first:
+      213: 8378021283797545262
+    second: OtherPeopleSheet_6
+  - first:
+      213: 8019260325117753242
+    second: OtherPeopleSheet_7
+  - first:
+      213: 7879151004020586250
+    second: OtherPeopleSheet_8
+  - first:
+      213: 628816524276132017
+    second: OtherPeopleSheet_9
+  - first:
+      213: -1057797164664899206
+    second: OtherPeopleSheet_10
+  - first:
+      213: 1395499309522662861
+    second: OtherPeopleSheet_11
+  - first:
+      213: -963122166307557874
+    second: OtherPeopleSheet_12
+  - first:
+      213: 1313134527335498253
+    second: OtherPeopleSheet_13
+  - first:
+      213: 2641911194034879184
+    second: OtherPeopleSheet_14
+  - first:
+      213: -1254391059718568918
+    second: OtherPeopleSheet_15
+  - first:
+      213: -1217057624813334830
+    second: OtherPeopleSheet_16
+  - first:
+      213: 8122042870012799055
+    second: OtherPeopleSheet_17
+  - first:
+      213: -4734739043393659996
+    second: OtherPeopleSheet_18
+  - first:
+      213: -7067751583669941140
+    second: OtherPeopleSheet_19
+  - first:
+      213: 7369943840182539085
+    second: OtherPeopleSheet_20
+  - first:
+      213: -2532224631743820148
+    second: OtherPeopleSheet_21
+  - first:
+      213: -541458525112836593
+    second: OtherPeopleSheet_22
+  - first:
+      213: -8037411269408242554
+    second: OtherPeopleSheet_23
+  - first:
+      213: -4687566147434970518
+    second: OtherPeopleSheet_24
+  - first:
+      213: 682611471528037792
+    second: OtherPeopleSheet_25
+  - first:
+      213: -4465307469309698799
+    second: OtherPeopleSheet_26
+  - first:
+      213: 8803139171231581665
+    second: OtherPeopleSheet_27
+  - first:
+      213: 8210177210905720102
+    second: OtherPeopleSheet_28
+  - first:
+      213: -1283431123357504313
+    second: OtherPeopleSheet_29
+  - first:
+      213: -6610208148309071107
+    second: OtherPeopleSheet_30
+  - first:
+      213: -2730428351853908991
+    second: OtherPeopleSheet_31
+  - first:
+      213: -1430626380217045271
+    second: OtherPeopleSheet_32
+  - first:
+      213: 5173969018134073480
+    second: OtherPeopleSheet_33
+  - first:
+      213: 2724134757769123003
+    second: OtherPeopleSheet_34
+  - first:
+      213: 8490615270441145152
+    second: OtherPeopleSheet_35
+  - first:
+      213: 4181114465338133160
+    second: OtherPeopleSheet_36
+  - first:
+      213: -1997187875115105127
+    second: OtherPeopleSheet_37
+  - first:
+      213: -4832211341167872015
+    second: OtherPeopleSheet_38
+  - first:
+      213: -7513544527803038818
+    second: OtherPeopleSheet_39
+  - first:
+      213: 5186833592210698689
+    second: OtherPeopleSheet_40
+  - first:
+      213: 7847684769346227582
+    second: OtherPeopleSheet_41
+  - first:
+      213: -3711817793613924964
+    second: OtherPeopleSheet_42
+  - first:
+      213: -4602967574839927773
+    second: OtherPeopleSheet_43
+  - first:
+      213: 7750702695775273876
+    second: OtherPeopleSheet_44
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OtherPeopleSheet_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 141
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e69942e249e7efe0800000000000000
+      internalID: -1159701905551026462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 141
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7931b516445e4330800000000000000
+      internalID: 3696985004106135934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 141
+        width: 13
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca15971e520b8e60800000000000000
+      internalID: 7965462969080683213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_3
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 141
+        width: 17
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf39271cf727f8c0800000000000000
+      internalID: -3965656983202611236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_4
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 141
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d527087979a40d20800000000000000
+      internalID: 3243903970783471065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_5
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 141
+        width: 10
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60548fed29ab51ed0800000000000000
+      internalID: -2443842082809821946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_6
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 141
+        width: 18
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e213a6d08f5b44470800000000000000
+      internalID: 8378021283797545262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_7
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 141
+        width: 28
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97f60027c22a4f60800000000000000
+      internalID: 8019260325117753242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_8
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 141
+        width: 15
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a073f46b71e585d60800000000000000
+      internalID: 7879151004020586250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_9
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 107
+        width: 9
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8ef561c410ab800800000000000000
+      internalID: 628816524276132017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_10
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 107
+        width: 9
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a79bbbb4513f151f0800000000000000
+      internalID: -1057797164664899206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 107
+        width: 9
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5b6647a3fcd5310800000000000000
+      internalID: 1395499309522662861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_12
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 107
+        width: 10
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0eeee91e7d42a2f0800000000000000
+      internalID: -963122166307557874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_13
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 107
+        width: 10
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02022435e0393210800000000000000
+      internalID: 1313134527335498253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_14
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 107
+        width: 12
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dab398cb34f9a420800000000000000
+      internalID: 2641911194034879184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_15
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 107
+        width: 13
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a248c0c2af1879ee0800000000000000
+      internalID: -1254391059718568918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_16
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 107
+        width: 14
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2de02d9d9842c1fe0800000000000000
+      internalID: -1217057624813334830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_17
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 107
+        width: 14
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f486b9535fa47b070800000000000000
+      internalID: 8122042870012799055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_18
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 107
+        width: 11
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab195efce3da4eb0800000000000000
+      internalID: -4734739043393659996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_19
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 107
+        width: 8
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c06a6916d4aed90800000000000000
+      internalID: -7067751583669941140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 71
+        width: 10
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4398a000ec474660800000000000000
+      internalID: 7369943840182539085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_21
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 71
+        width: 12
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e4a6d1d1bbbdcd0800000000000000
+      internalID: -2532224631743820148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_22
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 71
+        width: 13
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0eda06175a5c78f0800000000000000
+      internalID: -541458525112836593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_23
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 71
+        width: 10
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6844335d801657090800000000000000
+      internalID: -8037411269408242554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_24
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 71
+        width: 15
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a620ef8bc6b62feb0800000000000000
+      internalID: -4687566147434970518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_25
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 71
+        width: 15
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad0908448f197900800000000000000
+      internalID: 682611471528037792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_26
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 72
+        width: 19
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d95eec38a0802c0800000000000000
+      internalID: -4465307469309698799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_27
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 75
+        width: 22
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5c5996f680b2a70800000000000000
+      internalID: 8803139171231581665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_28
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 73
+        width: 17
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 625fa078ca860f170800000000000000
+      internalID: 8210177210905720102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_29
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 71
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cc68967136503ee0800000000000000
+      internalID: -1283431123357504313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_30
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 71
+        width: 12
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa25a426b2d344a0800000000000000
+      internalID: -6610208148309071107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_31
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 35
+        width: 9
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ca71361e19b1ad0800000000000000
+      internalID: -2730428351853908991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_32
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 35
+        width: 9
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee2cd013e4652ce0800000000000000
+      internalID: -1430626380217045271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_33
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 36
+        width: 15
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88012ccb861adc740800000000000000
+      internalID: 5173969018134073480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_34
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 37
+        width: 17
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb49f1d01221ec520800000000000000
+      internalID: 2724134757769123003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_35
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 38
+        width: 20
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043d62f6a99b4d570800000000000000
+      internalID: 8490615270441145152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_36
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 35
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa0ab7247d460a30800000000000000
+      internalID: 4181114465338133160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_37
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 35
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9940c0a85309844e0800000000000000
+      internalID: -1997187875115105127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_38
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 35
+        width: 13
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f7331a236980fcb0800000000000000
+      internalID: -4832211341167872015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_39
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 35
+        width: 9
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9348387f078ab790800000000000000
+      internalID: -7513544527803038818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_40
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 35
+        width: 11
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c138cccba55bf740800000000000000
+      internalID: 5186833592210698689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_41
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 12
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d002a08b398ec60800000000000000
+      internalID: 7847684769346227582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_42
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 13
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95faacf169fc7cc0800000000000000
+      internalID: -3711817793613924964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_43
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c5605d069fe10c0800000000000000
+      internalID: -4602967574839927773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherPeopleSheet_44
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 0
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 493095d6907009b60800000000000000
+      internalID: 7750702695775273876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 994da651863df6146ac70739c7653c5c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      OtherPeopleSheet_43: -4602967574839927773
+      OtherPeopleSheet_20: 7369943840182539085
+      OtherPeopleSheet_28: 8210177210905720102
+      OtherPeopleSheet_5: -2443842082809821946
+      OtherPeopleSheet_17: 8122042870012799055
+      OtherPeopleSheet_4: 3243903970783471065
+      OtherPeopleSheet_8: 7879151004020586250
+      OtherPeopleSheet_19: -7067751583669941140
+      OtherPeopleSheet_1: 3696985004106135934
+      OtherPeopleSheet_14: 2641911194034879184
+      OtherPeopleSheet_15: -1254391059718568918
+      OtherPeopleSheet_13: 1313134527335498253
+      OtherPeopleSheet_36: 4181114465338133160
+      OtherPeopleSheet_16: -1217057624813334830
+      OtherPeopleSheet_26: -4465307469309698799
+      OtherPeopleSheet_18: -4734739043393659996
+      OtherPeopleSheet_7: 8019260325117753242
+      OtherPeopleSheet_23: -8037411269408242554
+      OtherPeopleSheet_40: 5186833592210698689
+      OtherPeopleSheet_37: -1997187875115105127
+      OtherPeopleSheet_11: 1395499309522662861
+      OtherPeopleSheet_22: -541458525112836593
+      OtherPeopleSheet_3: -3965656983202611236
+      OtherPeopleSheet_0: -1159701905551026462
+      OtherPeopleSheet_30: -6610208148309071107
+      OtherPeopleSheet_35: 8490615270441145152
+      OtherPeopleSheet_38: -4832211341167872015
+      OtherPeopleSheet_31: -2730428351853908991
+      OtherPeopleSheet_41: 7847684769346227582
+      OtherPeopleSheet_10: -1057797164664899206
+      OtherPeopleSheet_29: -1283431123357504313
+      OtherPeopleSheet_25: 682611471528037792
+      OtherPeopleSheet_39: -7513544527803038818
+      OtherPeopleSheet_6: 8378021283797545262
+      OtherPeopleSheet_44: 7750702695775273876
+      OtherPeopleSheet_33: 5173969018134073480
+      OtherPeopleSheet_12: -963122166307557874
+      OtherPeopleSheet_24: -4687566147434970518
+      OtherPeopleSheet_27: 8803139171231581665
+      OtherPeopleSheet_34: 2724134757769123003
+      OtherPeopleSheet_42: -3711817793613924964
+      OtherPeopleSheet_9: 628816524276132017
+      OtherPeopleSheet_21: -2532224631743820148
+      OtherPeopleSheet_32: -1430626380217045271
+      OtherPeopleSheet_2: 7965462969080683213
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
