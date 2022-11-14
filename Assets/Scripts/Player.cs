@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
             gameManager.pigeonbox.Add(collider.gameObject);
             collider.gameObject.tag = "Pigeon";
             collider.gameObject.layer = 9;
-            collider.gameObject.GetComponent<Pigeon>().state = Pigeon.pigeonState.followplayer;
+            collider.gameObject.GetComponent<Pigeon>().birdState = Pigeon.pigeonState.followplayer;
         }
     }
     private void OnTriggerExit(Collider collider)
@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("Walking", false);
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
             hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
-            pigeonbox[0].GetComponent<Pigeon>().state = Pigeon.pigeonState.imlistening;
+            pigeonbox[0].GetComponent<Pigeon>().birdState = Pigeon.pigeonState.imlistening;
         }
         // If you let go of Q after hitting nothing, -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == false)
@@ -300,14 +300,14 @@ public class Player : MonoBehaviour
             state = Player.playerState.GeneralMovement;
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
             hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.resetpigeon;
-            pigeonbox[0].GetComponent<Pigeon>().state = Pigeon.pigeonState.resetpigeon;
+            pigeonbox[0].GetComponent<Pigeon>().birdState = Pigeon.pigeonState.resetpigeon;
         }
         // If you let go of Q after hitting something -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == true)
         {
             state = Player.playerState.GeneralMovement;
             myAnimator.SetBool("TalkToBirds", false);
-            pigeonbox[0].GetComponent<Pigeon>().state = Pigeon.pigeonState.followplayer;
+            pigeonbox[0].GetComponent<Pigeon>().birdState = Pigeon.pigeonState.followplayer;
         }
     }
     private void Walk()

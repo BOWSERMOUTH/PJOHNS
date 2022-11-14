@@ -1,164 +1,163 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Pigeon : MonoBehaviour
 {
-    // How high and far a pigeon hops
-    [SerializeField] Vector3 hopDistance;
-    // If true, freezing rotation and position + velocity
-    [SerializeField] bool freezePigeon;
-    // Stepping up stoops
-    [SerializeField] GameObject stepRayUpper;
-    [SerializeField] GameObject stepRayLower;
-    private float stepHeight = .5f;
-    private float stepSmooth = 0.1f;
-    // How fast the pigeon flies
-    [SerializeField] float pigeonSpeed = 10f;
-    // States of the pigeon
-    public enum pigeonState { followplayer, followcommand, imlistening, returntoplayer, resetpigeon, notcaptured }
-    public pigeonState state;
-    // The targetted objects GameObject
-    public GameObject target;
-    Vector3 targetPosition;
+    // State Machine
+    public enum pigeonState { followplayer, followcommand, imlistening, returntoplayer, resetpigeon, respawnpigeon, menu }
+    public pigeonState birdState;
+
+    //Pathfinding
+    private NavMeshPath path;
+    private float elapsed = 0.0f;
+
     // Cached Component References
-    Animator myAnimator;
+    public GameObject target;
     Rigidbody myRigidbody;
+    Animator myAnimator;
     BoxCollider myBoxCollider;
+    AudioSource myaudiosource;
+    public AudioClip wingflap;
+    private CharacterController pigeon;
     public GameObject player;
-    public GameObject crosshair;
+    // MIGHT NOT NEED
+    public GameObject playerArm;
     public BoxCollider myFootCollider;
-    public bool isTouchingGround;
-    public bool resetpigeon;
     public bool atPJohnsArm;
-    public GameObject targetObject = null;
-    // Start is called before the first frame update
+
+    public GameObject crosshair;
+    public AudioClip[] audioClips;
+
+    // Floats & Values
+    [SerializeField] Vector3 hopDistance;
+    Vector3 stop = new Vector3(0f, 0f, 0f);
+    Vector3 floorposition = new Vector3(0f, 0f, 0f);
+    public Vector3 birdVelocity;
+    [SerializeField] float birdSpeed;
+    private float gravity = -9.81f;
+    Vector3 targetPosition;
+
+    // Booleans
+    public bool isTouchingGround;
+    public bool jumppressed;
+    public bool resetpigeon;
+
     void Start()
     {
-        myAnimator = GetComponent<Animator>();
+        myaudiosource = gameObject.GetComponent<AudioSource>();
+        path = new NavMeshPath();
+        elapsed = 0.0f;
         myRigidbody = GetComponent<Rigidbody>();
+        myAnimator = GetComponent<Animator>();
+        pigeon = GetComponent<CharacterController>();
         myBoxCollider = GetComponent<BoxCollider>();
         player = GameObject.Find("PJohns");
         crosshair = GameObject.Find("crosshair");
+        // MIGHT NOT NEED
+        playerArm = GameObject.Find("Arm");
+
         target = player;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        StepClimb();
-        PigeonState();
-    }
     private void PigeonState()
     {
-        if (state == pigeonState.imlistening)
+        if (birdState == pigeonState.imlistening)
         {
             ImListening();
-            LookAtPlayerOrWayPoint();
         }
-        if (state == pigeonState.followplayer)
+        if (birdState == pigeonState.followplayer)
         {
             FollowPlayer();
-            LookAtPlayerOrWayPoint();
+            IsFlying();
         }
-        if (state == pigeonState.followcommand)
+        if (birdState == pigeonState.followcommand)
         {
             FollowCommand();
-            LookAtPlayerOrWayPoint();
         }
-        if (state == pigeonState.returntoplayer)
+        if (birdState == pigeonState.returntoplayer)
         {
             Return2Player();
-            LookAtPlayerOrWayPoint();
         }
-        if (state == pigeonState.resetpigeon)
+        if (birdState == pigeonState.resetpigeon)
         {
             ResetPigeon();
-            LookAtPlayerOrWayPoint();
         }
-        if (state == pigeonState.notcaptured)
+        if (birdState == pigeonState.respawnpigeon)
         {
-            myAnimator.SetBool("Idle", true);
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 6f, target.transform.position.z);
+            birdState = pigeonState.returntoplayer;
+        }
+        if (birdState == pigeonState.menu)
+        {
+            return;
         }
     }
     private void Return2Player()
     {
+        LookAtTarget();
         target = player;
-        myAnimator.SetBool("Flying", true);
-        myRigidbody.velocity = new Vector3(0f, 0f, 0f);
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, pigeonSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, target.transform.position) <= .1f)
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, birdSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, playerArm.transform.position) <= 1f)
         {
             crosshair.GetComponent<Crosshair>().thingivehit = null;
-            state = pigeonState.resetpigeon;
+            birdState = pigeonState.resetpigeon;
         }
     }
     private void ImListening()
     {
+        LookAtTarget();
+        myAnimator.SetBool("Walk", false);
+        gravity = 0f;
         target = player;
-        myRigidbody.velocity = new Vector3(0f, 0f, 0f);
-        myAnimator.SetBool("PigeonListen", true);
+        pigeon.Move(stop);
+        transform.position = Vector3.MoveTowards(transform.position, playerArm.transform.position, birdSpeed * Time.deltaTime);
+
+        // If I'm At PJOHNs Arm, Go Behind Him & Freeze My Position While Standing Still
+        if (transform.position == playerArm.transform.position)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            myAnimator.SetBool("Flying", false);
+        }
+        else
+        {
+            myAnimator.SetBool("Flying", true);
+        }
     }
     private void ResetPigeon()
     {
         {
+            LookAtTarget();
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
             myAnimator.SetBool("PigeonListen", false);
             myAnimator.SetBool("Flying", false);
             myAnimator.SetBool("Jump", false);
             myAnimator.SetBool("Walk", false);
-            freezePigeon = false;
-            myRigidbody.useGravity = true;
             resetpigeon = false;
-            state = pigeonState.followplayer;
-        }
-    }
-    private void FreezePigeon()
-    {
-        if (freezePigeon)
-        {
-            myRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        }
-        else if (!freezePigeon)
-        {
-            myRigidbody.constraints = RigidbodyConstraints.None;
-            myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            birdState = pigeonState.followplayer;
         }
     }
     // If Pigeon is touching ground, turn flying off & remove velocity
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Ground")
-        {
-            myAnimator.SetBool("Flying", false);
-            myAnimator.SetBool("Walk", true);
-            isTouchingGround = true;
-            myRigidbody.velocity = new Vector3(0f, 0f, 0f);
-        }
         if (other.tag == "Carryable")
         {
             transform.localScale = new Vector3((transform.localScale.x * -1f), transform.localScale.y, transform.localScale.z);
-            state = pigeonState.returntoplayer;
-        }
-    }
-    // If Pigeon is not touching ground, istouchingground = false
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Ground")
-        {
-            isTouchingGround = false;
+            birdState = pigeonState.returntoplayer;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Interactable")
         {
-            targetObject = collision.gameObject;
+            target = collision.gameObject;
         }
     }
 
-    // Makes Pigeon look at either player or waypoint
-    private void LookAtPlayerOrWayPoint()
+    // Pigeon Faces Target
+    private void LookAtTarget()
     {
         if (transform.position.x < target.transform.position.x)
         {
@@ -173,90 +172,137 @@ public class Pigeon : MonoBehaviour
     // Hops in direction of PJohn
     private void FollowPlayer()
     {
-        target = player.gameObject;
-        if (Vector3.Distance(transform.position, target.transform.position) > 1f && (Vector3.Distance(transform.position, target.transform.position) < 5f))
+        LookAtTarget();
+        // Target Player & Draw Pathfinding in Red
+        gravity = -9.81f;
+        target = player;
+        elapsed += Time.deltaTime;
+        if (elapsed > .1f)
         {
-            if (isTouchingGround == true)
+            elapsed -= .1f;
+            NavMeshHit floorhit;
+            if (NavMesh.SamplePosition(transform.position, out floorhit, 7.0f, NavMesh.AllAreas))
             {
-                myAnimator.SetBool("Walk", true);
-                myRigidbody.velocity = new Vector3((transform.localScale.x * hopDistance.x), hopDistance.y, hopDistance.z);
+                floorposition = floorhit.position;
+                Debug.DrawRay(targetPosition, Vector3.down, Color.white, 7.0f);
             }
+            NavMesh.CalculatePath(floorposition, target.transform.position, NavMesh.AllAreas, path);
         }
-        else if (Vector3.Distance(transform.position, target.transform.position) > 5f)
+        for (int i = 0; i < path.corners.Length - 1; i++)
+            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+        Vector3 firstPointDirection = path.corners[1] - transform.position;
+        firstPointDirection = firstPointDirection.normalized;
+        // If close to PJOHNS, Move Towards him
+        if (Vector3.Distance(transform.position, target.transform.position) > 1f && (Vector3.Distance(transform.position, target.transform.position) < 5f))
         {
             if (isTouchingGround)
             {
-                myRigidbody.velocity = new Vector3(transform.localScale.x * (Random.Range(5f, 8f)), 4f, 0f);
-                myAnimator.SetBool("Flying", true);
-                myAnimator.SetBool("Walk", false);
+                hopDistance.x = 2f;
+                hopDistance.z = 1f;
+                myAnimator.SetBool("Walk", true);
             }
         }
-        else
+        // If far from PJOHNS, jump towards him
+        if (Vector3.Distance(transform.position, target.transform.position) > 5f)
         {
-            myAnimator.SetBool("Walk", false);
+            if (isTouchingGround && !jumppressed)
+            {
+                hopDistance.x = Random.Range(5f, 8f);
+                hopDistance.z = 2f;
+                hopDistance.y += Mathf.Sqrt(2.5f * -1.0f * gravity);
+                jumppressed = true;
+            }
         }
-        // Move On Z axis
-        if (!freezePigeon)
+        // If at PJOHNS, stop
+        if (Vector3.Distance(transform.position, target.transform.position) < 1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, player.transform.position.z), .5f * Time.deltaTime);
+            if (isTouchingGround)
+            {
+                myAnimator.SetBool("Flying", false);
+                myAnimator.SetBool("Walk", false);
+                hopDistance.x = 0f;
+                hopDistance.z = 0f;
+            }
         }
+        if (Vector3.Distance(transform.position, target.transform.position) > 10f)
+        {
+            birdState = pigeonState.respawnpigeon;
+        }
+        // If on the ground stop vertical movement
+        if (isTouchingGround && hopDistance.y < 0)
+        {
+            hopDistance.y = 0f;
+            jumppressed = false;
+        }
+        hopDistance.y += gravity * Time.deltaTime;
+        birdVelocity = new Vector3((firstPointDirection.x * hopDistance.x), hopDistance.y, firstPointDirection.z * hopDistance.z);
+        pigeon.Move(birdVelocity * Time.deltaTime);
     }
     private void FlipSprite()
     {
-        bool whichDirectionPlayerFacing = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
+        bool whichDirectionPlayerFacing = Mathf.Abs(pigeon.velocity.x) > Mathf.Epsilon;
         if (whichDirectionPlayerFacing)
         {
-            transform.localScale = new Vector3(Mathf.Sign(myRigidbody.velocity.x), 1f, 1f);
+            transform.localScale = new Vector3(Mathf.Sign(pigeon.velocity.x), 1f, 1f);
         }
     }
-    private void StepClimb()
-    {
-        LayerMask layerMask = 1 << 0;
-        RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f, layerMask))
-        {
-            RaycastHit hitUpper;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f, layerMask))
-            {
-                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-            }
-        }
-        RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f, layerMask))
-        {
-            RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f, layerMask))
-            {
-                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-            }
-        }
-        RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f, layerMask))
-        {
-            RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f, layerMask))
-            {
-                myRigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-            }
-        }
-    }
+
     private void FollowCommand()
     {
+        LookAtTarget();
         myAnimator.SetBool("Idle", false);
         myAnimator.SetBool("Walk", false);
         myAnimator.SetBool("Flying", true);
-        myRigidbody.useGravity = false;
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, pigeonSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, birdSpeed * Time.deltaTime);
         if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)
         {
-            freezePigeon = true;
-            targetObject.SendMessage("killHealth", 5);
-            if (targetObject.GetComponent<ObjectHealth>().health <= 0)
+            //hotdog.isStopped = true;
+            //target.SendMessage("killHealth", 5);
+            //if (target.GetComponent<ObjectHealth>().health <= 0)
             {
-                state = pigeonState.followplayer;
-                crosshair.GetComponent<Crosshair>().thingivehit = null;
-                crosshair.GetComponent<Crosshair>().ivehitsomething = false;
+                //hotdogState = Hotdog.pigeonState.followplayer;
+                //crosshair.GetComponent<Crosshair>().thingivehit = null;
+                //crosshair.GetComponent<Crosshair>().ivehitsomething = false;
             }
         }
     }
+    private bool IsGrounded()
+    {
+        float floorDistanceFromFoot = pigeon.stepOffset - .25f;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, floorDistanceFromFoot) || pigeon.isGrounded)
+        {
+            Debug.DrawRay(transform.position, Vector3.down * floorDistanceFromFoot, Color.yellow);
+            return true;
+        }
+        return false;
+    }
+    private void IsFlying()
+    {
+        if (!isTouchingGround)
+        {
+            myAnimator.SetBool("Flying", true);
+        }
+        else
+        {
+            myAnimator.SetBool("Flying", false);
+        }
+    }
+    public void CooSound()
+    {
+        myaudiosource.clip = audioClips[Random.Range(0, 3)];
+        myaudiosource.pitch = Random.Range(.9f, 1.3f);
+        myaudiosource.Play();
+        //myaudiosource.pitch = 1f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        isTouchingGround = IsGrounded();
+        IsGrounded();
+        FlipSprite();
+        PigeonState();
+    }
 }
+
