@@ -43,6 +43,8 @@ public class PJohns : MonoBehaviour
 
 
     //Cached Component References
+    private GameObject gamemanager;
+    public GameObject policeGenerator;
     private CharacterController controller;
     public BoxCollider myCollider;
     Animator myAnimator;
@@ -66,6 +68,7 @@ public class PJohns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gamemanager = GameObject.Find("GameManager");
         myAudioSource = gameObject.GetComponent<AudioSource>();
         myAnimator = gameObject.GetComponent<Animator>();
         controller = gameObject.GetComponent<CharacterController>();
@@ -208,7 +211,7 @@ public class PJohns : MonoBehaviour
         {
             ledgecapable = false;
         }
-        // if you can grab a ledge //and press SPACE, grab the ledge
+        // grab the ledge
         if (ledgecapable)
         {
             ledgeGrabPoint = currentLedge;
@@ -317,12 +320,12 @@ public class PJohns : MonoBehaviour
     }
     private void LedgeHang()
     {
-        myAnimator.SetBool("LedgeGrab", true);
         myAnimator.SetBool("Walking", false);
         myAnimator.SetBool("Jump", false);
         myAnimator.SetBool("Running", false);
-        myCollider.isTrigger = true;
+        myAnimator.SetBool("LedgeGrab", true);
         transform.position = currentLedge;
+        myCollider.isTrigger = true;
         if (Input.GetKeyDown(KeyCode.W))
         {
             playerVelocity.y = 0f;
@@ -435,6 +438,12 @@ public class PJohns : MonoBehaviour
                 myAnimator.SetBool("EndClimb", false);
                 state = playerState.GeneralMovement;
             }
+        }
+        if (collider.gameObject.tag == "Danger")
+        {
+            gamemanager.GetComponent<GameManager>().PlayPoliceAmbience();
+            Vector3 mypos = new Vector3((transform.position.x + 30), transform.position.y, transform.position.z);
+            Instantiate(policeGenerator, mypos, Quaternion.identity);
         }
     }
 

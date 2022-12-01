@@ -9,18 +9,11 @@ public class People : MonoBehaviour
     Animator myAnimator;
     NavMeshAgent myNma;
     SpriteRenderer myspriteren;
-    [SerializeField] Transform targetPosition;
-
-    //Rigidbody myRigidbody;
-    //[SerializeField] GameObject stepRayUpper;
-    //[SerializeField] GameObject stepRayLower;
-    //private float stepHeight = .5f;
-    //private float stepSmooth = 0.15f;
-    //w[SerializeField] float walkSpeed;
+    [SerializeField] GameObject targetPosition;
     // Start is called before the first frame update
     void Start()
     {
-        //myRigidbody = GetComponent<Rigidbody>();
+        targetPosition = GameObject.Find("TeleporterEnd");
         myspriteren = GetComponentInChildren<SpriteRenderer>();
         myAnimator = GetComponentInChildren<Animator>();
         myNma = GetComponentInChildren<NavMeshAgent>();
@@ -36,7 +29,11 @@ public class People : MonoBehaviour
     {
         myAnimator.SetBool("Walk", true);
         myNma.SetDestination(targetPosition.transform.position);
-
+        float distance = Vector3.Distance(transform.position, targetPosition.transform.position);
+        if (distance <= .3f)
+        {
+            Destroy(gameObject);
+        }
     }
     private void FlipSprite()
     {

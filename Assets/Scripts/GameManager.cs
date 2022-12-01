@@ -18,11 +18,12 @@ public class GameManager : MonoBehaviour
     public bool ampm;
     public int fifteenminincrements;
     // GameObject References
+    private AudioSource myaudio;
     public GameObject player;
     private Vector3 playerlastposition;
     public GameObject hotdog;
-    public GameObject daylight;
-    public GameObject nightlight;
+    //public GameObject daylight;
+    //public GameObject nightlight;
     public List<GameObject> pigeonbox;
     void Awake()
     {
@@ -39,10 +40,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myaudio = gameObject.GetComponent<AudioSource>();
         player = GameObject.Find("PJohns");
         hotdog = GameObject.Find("Hotdog");
-        daylight = GameObject.Find("DayLight");
-        nightlight = GameObject.Find("NightLight");
+        //daylight = GameObject.Find("DayLight");
+        //nightlight = GameObject.Find("NightLight");
+    }
+    public void PlayPoliceAmbience()
+    {
+        myaudio.Play();
+    }
+    public void StopPoliceAmbience()
+    {
+        myaudio.Stop();
     }
     public void WhatTimeItIs()
     {
@@ -66,8 +76,8 @@ public class GameManager : MonoBehaviour
     private void DaylightOrbit()
     {
         sunrotationtime += Time.deltaTime;
-        daylight.transform.rotation = Quaternion.Euler(new Vector3((daylight.transform.rotation.x + sunrotationtime / 12f), 0f, 0f));
-        print(daylight.transform.eulerAngles);
+        //daylight.transform.rotation = Quaternion.Euler(new Vector3((daylight.transform.rotation.x + sunrotationtime / 12f), 0f, 0f));
+        //print(daylight.transform.eulerAngles);
     }
     private void PigeonBox()
     {

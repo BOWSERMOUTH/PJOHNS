@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1164314916807787476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164314916807787478}
+  - component: {fileID: 3231992759890541482}
+  m_Layer: 0
+  m_Name: PeopleGenerator 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164314916807787478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164314916807787476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3231992759890541482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164314916807787476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e7de36c5542bd4eaf69b991a4f781c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carlos: {fileID: 4437937284472998258, guid: 7940b4f60d1152643ac0d614664c9b59, type: 3}
+  todd: {fileID: 5209928066748454321, guid: 572bad9565943a2419027b5ca3d1a8ec, type: 3}
+  alex: {fileID: 6669874122230680142, guid: 807922f81ed158740a4c1fcce21fa273, type: 3}
+  trevor: {fileID: 7309606583434470162, guid: 9b47438295d8cf242b28798a8384e79f, type: 3}
+  mark: {fileID: 1944651788391609301, guid: 5693cb033f88f7a4393d80f7a738e7be, type: 3}
+  pedestrianlimit: 10
+  minTimer: 0
+  maxTimer: 0
+  peoplebox: []
+  outInTheField: []
+  pedestriancount: 0
