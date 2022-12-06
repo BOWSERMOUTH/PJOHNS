@@ -21,6 +21,7 @@ public class PJohns : MonoBehaviour
     [SerializeField] bool dismiss;
     [SerializeField] bool mindControl;
     [SerializeField] bool fly;
+    public Vector3 fallspeed;
     public Vector3 playerVelocity;
     public Vector3 direction;
     public Vector3 ledgeGrabPoint;
@@ -251,6 +252,21 @@ public class PJohns : MonoBehaviour
         {
             state = playerState.Hide;
         }
+        Falling();
+    }
+    private void Falling()
+    {
+        if (controller.velocity.y < -6f)
+        {
+            myAnimator.SetBool("Crouching", false);
+            myAnimator.SetBool("Walking", false);
+            myAnimator.SetBool("Running", false);
+            myAnimator.SetBool("Falling", true);
+        }
+        else if (isTouchingGround == true)
+        {
+            myAnimator.SetBool("Falling", false);
+        }
     }
     private void Crouch()
     {
@@ -363,6 +379,7 @@ public class PJohns : MonoBehaviour
     }
     private void DumpsterDive()
     {
+        myAnimator.SetBool("Running", false);
         if (imHiding == false)
         {
             controller.enabled = false;
@@ -381,22 +398,23 @@ public class PJohns : MonoBehaviour
     }
     private void MovingIntoDumpster()
     {
-        transform.position = new Vector3(transform.position.x, (transform.position.y), (transform.position.z + .5f));
+        transform.position = new Vector3(transform.position.x, (transform.position.y + .3f), (transform.position.z + .5f));
     }
     private void MovingOutDumpster()
     {
-        transform.position = new Vector3(transform.position.x, (transform.position.y), (transform.position.z - .5f));
+        transform.position = new Vector3(transform.position.x, (transform.position.y - .3f), (transform.position.z - .5f));
         controller.enabled = true;
     }
     private void CalculateGravity()
     {
 
-        if (!controller.isGrounded)
+        if (!isTouchingGround)
         {
             state = playerState.Falling;
         }
         else
         {
+            myAnimator.SetBool("Falling", false);
             state = playerState.GeneralMovement;
         }
     }
@@ -442,7 +460,7 @@ public class PJohns : MonoBehaviour
         if (collider.gameObject.tag == "Danger")
         {
             gamemanager.GetComponent<GameManager>().PlayPoliceAmbience();
-            Vector3 mypos = new Vector3((transform.position.x + 30), transform.position.y, transform.position.z);
+            Vector3 mypos = new Vector3((transform.position.x + 13f), transform.position.y, transform.position.z);
             Instantiate(policeGenerator, mypos, Quaternion.identity);
         }
     }

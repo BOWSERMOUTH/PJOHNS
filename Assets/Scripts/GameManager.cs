@@ -12,16 +12,20 @@ public class GameManager : MonoBehaviour
     // Floats & Variables
     private int foodcount;
     // Time
+
     public float sunrotationtime = 348;
     public float timeRate = 48f;
     public float timeofday;
     public bool ampm;
     public int fifteenminincrements;
     // GameObject References
+    public List<GameObject> gameObjects;
     private AudioSource myaudio;
-    public GameObject player;
+
+    // Script References
+    private CinemachineVirtualCamera cinemachine;
+
     private Vector3 playerlastposition;
-    public GameObject hotdog;
     //public GameObject daylight;
     //public GameObject nightlight;
     public List<GameObject> pigeonbox;
@@ -40,9 +44,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 0), Quaternion.identity);
+        player.name = "PJohns";
+        Instantiate(gameObjects[1], new Vector3(0, 0, 0), Quaternion.identity).name = "Canvas";
+        GameObject cameras = new GameObject("Cameras");
+        gameObjects[2] = GameObject.Find("Main Camera");
+        gameObjects[3] = GameObject.Find("FollowPlayer");
+        gameObjects[3].GetComponent<CinemachineVirtualCamera>().Follow = player.transform;
+
+        //Instantiate(gameObjects[2], new Vector3(0, 0, 0), Quaternion.identity).name = "Main Camera";
+        //gameObjects[2].transform.parent = cameras.transform;
+        //Instantiate(gameObjects[3], new Vector3(0, 0, 0), Quaternion.identity).name = "Follow Player";
+        //gameObjects[3].transform.parent = cameras.transform;
+        //cinemachine = gameObjects[3].GetComponent<CinemachineVirtualCamera>();
+        //cinemachine.Follow = gameObjects[0].transform;
+
+
         myaudio = gameObject.GetComponent<AudioSource>();
-        player = GameObject.Find("PJohns");
-        hotdog = GameObject.Find("Hotdog");
+        //player = GameObject.Find("PJohns");
+        //hotdog = GameObject.Find("Hotdog");
+
         //daylight = GameObject.Find("DayLight");
         //nightlight = GameObject.Find("NightLight");
     }
@@ -73,6 +94,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private void TellTime()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GameObject.Find("Watch").GetComponent<Watch>().WatchSound();
+        }
+    }
     private void DaylightOrbit()
     {
         sunrotationtime += Time.deltaTime;
@@ -87,6 +115,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         WhatTimeItIs();
+        TellTime();
         //DaylightOrbit();
     }
 }

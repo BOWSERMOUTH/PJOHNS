@@ -364,7 +364,7 @@ Transform:
   - {fileID: 939347544}
   - {fileID: 1224076867}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6978558331305631024
 SpriteRenderer:
@@ -484,6 +484,7 @@ MonoBehaviour:
   playerArm: {fileID: 0}
   crosshair: {fileID: 0}
   myFootCollider: {fileID: 6978558331305631028}
+  audioClips: []
   hopDistance: {x: 1, y: 1, z: 0}
   hotdogVelocity: {x: 0, y: 0, z: 0}
   pigeonSpeed: 8
@@ -530,7 +531,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 9.3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
