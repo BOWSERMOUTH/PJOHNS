@@ -16,16 +16,13 @@ public class Hotdog : MonoBehaviour
 
     // Cached Component References
     public GameObject target;
-    Rigidbody myRigidbody;
-    Animator myAnimator;
-    BoxCollider myBoxCollider;
-    AudioSource myaudiosource;
+    public Animator myAnimator;
+    public AudioSource myaudiosource;
     public AudioClip wingflap;
     private CharacterController hotdog;
     public GameObject player;
     public GameObject playerArm;
     public GameObject crosshair;
-    public BoxCollider myFootCollider;
     public AudioClip[] audioClips;
 
     // Floats & Values
@@ -48,10 +45,8 @@ public class Hotdog : MonoBehaviour
         myaudiosource = gameObject.GetComponent<AudioSource>();
         path = new NavMeshPath();
         elapsed = 0.0f;
-        myRigidbody = GetComponent<Rigidbody>();
-        myAnimator = GetComponent<Animator>();
+        myAnimator = GetComponentInChildren<Animator>();
         hotdog = GetComponent<CharacterController>();
-        myBoxCollider = GetComponent<BoxCollider>();
         player = GameObject.Find("PJohns");
         crosshair = GameObject.Find("crosshair");
         playerArm = GameObject.Find("Arm");
@@ -114,7 +109,7 @@ public class Hotdog : MonoBehaviour
         // If I'm At PJOHNs Arm, Go Behind Him & Freeze My Position While Standing Still
         if (transform.position == playerArm.transform.position)
         {
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
             myAnimator.SetBool("Flying", false);
         }
         else
@@ -126,11 +121,11 @@ public class Hotdog : MonoBehaviour
     {
         {
             LookAtTarget();
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            myAnimator.SetBool("PigeonListen", false);
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
             myAnimator.SetBool("Flying", false);
-            myAnimator.SetBool("Jump", false);
             myAnimator.SetBool("Walk", false);
+            myAnimator.SetBool("Jump", false);
+            myAnimator.SetBool("PigeonListen", false);
             resetpigeon = false;
             hotdogState = pigeonState.followplayer;
         }
@@ -176,7 +171,6 @@ public class Hotdog : MonoBehaviour
         if (elapsed > .1f)
         {
             elapsed -= .1f;
-            Vector3 fartposition;
             NavMeshHit floorhit;
             if (NavMesh.SamplePosition(transform.position, out floorhit, 7.0f, NavMesh.AllAreas))
             {

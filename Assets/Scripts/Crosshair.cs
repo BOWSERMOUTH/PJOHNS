@@ -23,10 +23,15 @@ public class Crosshair : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitializeCrosshair();
+    }
+    public void InitializeCrosshair()
+    {
         crosshairstate = CrosshairState.isdisabled;
         myRigidbody = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.Find("PJohns");
         hotdog = GameObject.Find("Hotdog");
+        cam = Camera.main;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
@@ -49,15 +54,6 @@ public class Crosshair : MonoBehaviour
     }
     private void MoveCrosshair()
     {
-        // Controller Controls
-        //float horizontalThrow = CrossPlatformInputManager.GetAxis("Horizontal"); // value is between -1 to +1
-        //float verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
-        //Vector2 playerVelocity = new Vector2((horizontalThrow * crosshairSpeed), verticalThrow * crosshairSpeed); // controlling speed of character
-        //myRigidbody.velocity = playerVelocity;
-        //Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        //pos.x = Mathf.Clamp01(pos.x);
-        //pos.y = Mathf.Clamp01(pos.y);
-
         // Mouse Controls
         screenPosition = Input.mousePosition;
         screenPosition.z = Camera.main.nearClipPlane + 6f;
@@ -75,6 +71,11 @@ public class Crosshair : MonoBehaviour
         thingivehit = hit.transform;
         if (hit.collider != null)
         {
+            transform.localScale += transform.localScale * Time.deltaTime * 1.5f;
+            if (transform.localScale.x >= 1.5f)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
             ivehitsomething = true;
             if (Input.GetKeyUp(KeyCode.Q))
             {

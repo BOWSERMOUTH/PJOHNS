@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walking
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -67,6 +67,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -1458470619866668646, guid: ce0fda97a0b7a974f9774418b7dde47a, type: 3}
     - {fileID: 4899384459347576950, guid: ce0fda97a0b7a974f9774418b7dde47a, type: 3}
@@ -104,14 +105,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.16666667
-    functionName: FootstepAudio
+    functionName: footstepnow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
-    functionName: FootstepAudio
+    functionName: footstepnow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

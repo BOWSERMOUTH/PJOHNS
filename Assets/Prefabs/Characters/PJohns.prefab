@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5394927957240368060
+--- !u!1 &1923045184891627252
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5394927957240368056}
-  - component: {fileID: 5394927957240368058}
-  - component: {fileID: 5394927957240368061}
-  - component: {fileID: 5394927957240368059}
-  - component: {fileID: 5394927957187826766}
-  - component: {fileID: 541839764065054066}
-  - component: {fileID: 541839764065054067}
+  - component: {fileID: 1923045184891627248}
+  - component: {fileID: 1923045184891627250}
+  - component: {fileID: 1923045184891627253}
+  - component: {fileID: 725029159}
   m_Layer: 6
-  m_Name: PJohns
+  m_Name: PJohnsSprite
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5394927957240368056
+--- !u!4 &1923045184891627248
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5394927957240368060}
+  m_GameObject: {fileID: 1923045184891627252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.05, z: 0.73}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5394927958214912591}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 5394927957240368056}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5394927957240368058
+--- !u!212 &1923045184891627250
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5394927957240368060}
+  m_GameObject: {fileID: 1923045184891627252}
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
@@ -91,14 +88,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5394927957240368061
+--- !u!95 &1923045184891627253
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5394927957240368060}
+  m_GameObject: {fileID: 1923045184891627252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5e6087cc24ef4414591c2a9b2ddd5272, type: 2}
@@ -111,6 +108,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &725029159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923045184891627252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278c283aba9c7a3489d6b9259c981375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5394927957240368060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5394927957240368056}
+  - component: {fileID: 541839764065054067}
+  - component: {fileID: 5394927957240368059}
+  - component: {fileID: 5394927957187826766}
+  - component: {fileID: 541839764065054066}
+  m_Layer: 6
+  m_Name: PJohns
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5394927957240368056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5394927957240368060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.44, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1923045184891627248}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541839764065054067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5394927957240368060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965996ad2ca3cb04ba3f650e36d78857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  pigeonbox: []
+  jumpHeight: 2
+  climbSpeed: 2
+  crouchSpeed: 0.8
+  freezeCharacter: 0
+  doubleJump: 0
+  pigeonShield: 0
+  dismiss: 0
+  mindControl: 0
+  fly: 0
+  fallspeed: {x: 0, y: 0, z: 0}
+  playerVelocity: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
+  ledgeGrabPoint: {x: 0, y: 0, z: 0}
+  isTouchingGround: 0
+  jumppressed: 0
+  isCrouching: 0
+  playerIsWalking: 0
+  touchingDumpster: 0
+  touchingLadder: 0
+  holdingLadder: 0
+  imWhispering: 0
+  imHiding: 0
+  pigeonshiding: 0
+  policeGenerator: {fileID: 7570563303818769734, guid: 1a9b67d61ba980d42879bd13441f768d,
+    type: 3}
+  myCollider: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 97c32996368a40b4face6758d1e0b4dd, type: 3}
+  - {fileID: 8300000, guid: fb8cd9d31bd8a7e4c806b2e07fccff15, type: 3}
+  - {fileID: 8300000, guid: d75d9e68335ee584b95b68606b0362c7, type: 3}
+  - {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
+  currentLedge: {x: 0, y: 0, z: 0}
+  currentDumpster: {fileID: 0}
+  currentLadder: {fileID: 0}
 --- !u!65 &5394927957240368059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119,10 +212,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5394927957240368060}
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 1.55, z: 0}
+  m_Size: {x: 0.45, y: 1.55, z: 0.3}
   m_Center: {x: 0, y: 0.775, z: 0}
 --- !u!82 &5394927957187826766
 AudioSource:
@@ -134,7 +227,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.668
   m_Pitch: 1
@@ -238,57 +331,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &541839764065054067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5394927957240368060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965996ad2ca3cb04ba3f650e36d78857, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  jumpHeight: 2
-  climbSpeed: 2
-  crouchSpeed: 0.8
-  freezeCharacter: 0
-  doubleJump: 0
-  pigeonShield: 0
-  dismiss: 0
-  mindControl: 0
-  fly: 0
-  fallspeed: {x: 0, y: 0, z: 0}
-  playerVelocity: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  ledgeGrabPoint: {x: 0, y: 0, z: 0}
-  isTouchingGround: 0
-  jumppressed: 0
-  isCrouching: 0
-  playerIsWalking: 0
-  touchingDumpster: 0
-  touchingLadder: 0
-  holdingLadder: 0
-  imWhispering: 0
-  imHiding: 0
-  pigeonshiding: 0
-  ledgecapable: 0
-  topraybool: 0
-  lowraybool: 0
-  policeGenerator: {fileID: 7570563303818769734, guid: 1a9b67d61ba980d42879bd13441f768d,
-    type: 3}
-  myCollider: {fileID: 0}
-  footstep: {fileID: 8300000, guid: e6fbf050a00c2a04e9b66bb426fdcb0c, type: 3}
-  audioClips:
-  - {fileID: 8300000, guid: 97c32996368a40b4face6758d1e0b4dd, type: 3}
-  - {fileID: 8300000, guid: fb8cd9d31bd8a7e4c806b2e07fccff15, type: 3}
-  - {fileID: 8300000, guid: d75d9e68335ee584b95b68606b0362c7, type: 3}
-  currentLedge: {x: 0, y: 0, z: 0}
-  pigeonbox: []
-  currentDumpster: {fileID: 0}
-  currentLadder: {fileID: 0}
 --- !u!1 &5394927958214912590
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +359,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5394927957240368056}
+  m_Father: {fileID: 1923045184891627248}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

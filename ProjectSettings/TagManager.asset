@@ -11,6 +11,14 @@ TagManager:
   - Dumpster
   - Ladder
   - TopLadder
+  - Danger
+  - Interactable
+  - Lock
+  - Boundaries
+  - NightLight
+  - HDVendor
+  - Carryable
+  - TrafficGuy
   layers:
   - Default
   - TransparentFX
@@ -22,9 +30,9 @@ TagManager:
   - Dumpster
   - Interactable
   - Police
-  - 
-  - 
-  - 
+  - Awareness
+  - NotCaptured
+  - Captured
   - 
   - 
   - 
@@ -45,6 +53,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Text
+    uniqueID: 2103183549
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

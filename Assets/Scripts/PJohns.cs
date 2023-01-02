@@ -8,6 +8,7 @@ public class PJohns : MonoBehaviour
     public enum playerState { GeneralMovement, Falling, Crouch, Climb, Hide, Whisper, Freeze, MindControl, Frozen, Transition, SendAway, Ledge }
     //Config
     [SerializeField] playerState state;
+    public List<GameObject> pigeonbox;
     [SerializeField] float jumpHeight;
     private float walkSpeed = 2f;
     private float zwalkSpeed = 1.9f;
@@ -37,9 +38,9 @@ public class PJohns : MonoBehaviour
     public bool imWhispering;
     public bool imHiding;
     public bool pigeonshiding = false;
-    public bool ledgecapable;
-    public bool topraybool;
-    public bool lowraybool;
+    private bool ledgecapable;
+    private bool topraybool;
+    private bool lowraybool;
     private float ledgerayx;
 
 
@@ -50,14 +51,13 @@ public class PJohns : MonoBehaviour
     public BoxCollider myCollider;
     Animator myAnimator;
     AudioSource myAudioSource;
-    public AudioClip footstep;
     public AudioClip[] audioClips;
     Text actionText;
     private GameObject followcam = null;
 
     //Other Object References
     public Vector3 currentLedge;
-    public List<GameObject> pigeonbox = new List<GameObject>();
+    //public List<GameObject> pigeonbox = new List<GameObject>();
     private GameManager gameManager;
     GameObject crossHair;
     GameObject hotdog;
@@ -71,22 +71,19 @@ public class PJohns : MonoBehaviour
     {
         gamemanager = GameObject.Find("GameManager");
         myAudioSource = gameObject.GetComponent<AudioSource>();
-        myAnimator = gameObject.GetComponent<Animator>();
+        myAnimator = gameObject.GetComponentInChildren<Animator>();
         controller = gameObject.GetComponent<CharacterController>();
         myCollider = gameObject.GetComponent<BoxCollider>();
         crossHair = GameObject.Find("crosshair");
         crossHair.GetComponent<SpriteRenderer>().enabled = false;
         hotdog = GameObject.Find("Hotdog");
+        
     }
     private void PlayerState()
     {
         if (state == playerState.GeneralMovement)
         {
             Walk();
-
-            //StepClimb();
-            //TellTime();
-            //Whispering();
         }
         if (state == playerState.Crouch)
         {
@@ -157,6 +154,19 @@ public class PJohns : MonoBehaviour
         // Transition to Crouch
         if (Input.GetKeyDown(KeyCode.C))
         {
+            StartCoroutine(PauseAnimation());
+            IEnumerator PauseAnimation()
+            {
+                yield return new WaitForSeconds(.5f);
+                if (!isCrouching)
+                {
+                    isCrouching = true;
+                }
+                else if (isCrouching)
+                {
+                    isCrouching = false;
+                }
+            }
             playerIsWalking = false;
             state = playerState.Crouch;
         }
@@ -285,7 +295,13 @@ public class PJohns : MonoBehaviour
             isCrouching = false;
             controller.center = new Vector3(0f, 0.79f, 0f);
             controller.height = 1.47f;
-            state = playerState.GeneralMovement;
+            StartCoroutine(PauseAnimation());
+            IEnumerator PauseAnimation()
+            {
+                yield return new WaitForSeconds(.5f);
+                isCrouching = false;
+                state = playerState.GeneralMovement;
+            }
         }
         // X Axis Crouching
         if (isCrouching == true)
@@ -308,7 +324,10 @@ public class PJohns : MonoBehaviour
             myAnimator.SetBool("Walking", false);
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isactive;
             hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.imlistening;
-            //pigeonbox[0].GetComponent<Pigeon>().state = Pigeon.pigeonState.imlistening;
+            foreach (GameObject obj in pigeonbox)
+            {
+                obj.GetComponent<Pigeon>().state = Pigeon.pigeonState.imlistening;
+            }
         }
         // If you let go of Q after hitting nothing, -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == false)
@@ -323,7 +342,10 @@ public class PJohns : MonoBehaviour
             state = playerState.GeneralMovement;
             crossHair.GetComponent<Crosshair>().crosshairstate = Crosshair.CrosshairState.isdisabled;
             hotdog.GetComponent<Hotdog>().hotdogState = Hotdog.pigeonState.resetpigeon;
-            //pigeonbox[0].GetComponent<Pigeon>().state = Pigeon.pigeonState.resetpigeon;
+            foreach (GameObject obj in pigeonbox)
+            {
+                obj.GetComponent<Pigeon>().state = Pigeon.pigeonState.followplayer;
+            }
         }
         // If you let go of Q after hitting something -> General Movement
         else if (Input.GetKeyUp(KeyCode.Q) && crossHair.GetComponent<Crosshair>().ivehitsomething == true)
@@ -386,6 +408,7 @@ public class PJohns : MonoBehaviour
             currentDumpster.gameObject.GetComponent<Dumpster>().IntoDumpster();
             myAnimator.SetBool("IntoDumpster", true);
             imHiding = true;
+            StartCoroutine(MovingIntoDumpster());
         }
         else if (Input.GetKeyDown(KeyCode.E) && imHiding == true)
         {
@@ -393,16 +416,19 @@ public class PJohns : MonoBehaviour
             myAnimator.SetBool("OutDumpster", true);
             myAnimator.SetBool("IntoDumpster", false);
             imHiding = false;
+            StartCoroutine(MovingOutDumpster());
             state = playerState.GeneralMovement;
         }
     }
-    private void MovingIntoDumpster()
+    IEnumerator MovingIntoDumpster()
     {
+        yield return new WaitForSeconds(.37f);
         transform.position = new Vector3(transform.position.x, (transform.position.y + .3f), (transform.position.z + .5f));
     }
-    private void MovingOutDumpster()
+    IEnumerator MovingOutDumpster()
     {
-        transform.position = new Vector3(transform.position.x, (transform.position.y - .3f), (transform.position.z - .5f));
+        yield return new WaitForSeconds(.37f);
+        transform.position = new Vector3(transform.position.x, (transform.position.y + .3f), (transform.position.z - .5f));
         controller.enabled = true;
     }
     private void CalculateGravity()
@@ -428,7 +454,7 @@ public class PJohns : MonoBehaviour
     }
     public void FootstepAudio()
     {
-        myAudioSource.PlayOneShot(footstep, 1.0f);
+        myAudioSource.PlayOneShot(audioClips[3], .668f);
     }
     private bool IsGrounded()
     {
@@ -459,9 +485,13 @@ public class PJohns : MonoBehaviour
         }
         if (collider.gameObject.tag == "Danger")
         {
-            gamemanager.GetComponent<GameManager>().PlayPoliceAmbience();
-            Vector3 mypos = new Vector3((transform.position.x + 13f), transform.position.y, transform.position.z);
+            gamemanager.GetComponent<GameManager>().PoliceTime();
+            Vector3 mypos = new Vector3((transform.position.x + 15f), transform.position.y, transform.position.z);
             Instantiate(policeGenerator, mypos, Quaternion.identity);
+        }
+        if (collider.gameObject.tag == "NotCaptured")
+        {
+            pigeonbox.Add(collider.gameObject);
         }
     }
 
