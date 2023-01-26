@@ -145,7 +145,7 @@ public class PJohns : MonoBehaviour
             jumppressed = true;
         }
         // If on the ground stop vertical movement
-        if (controller.isGrounded && playerVelocity.y < 0)
+        if (isTouchingGround && playerVelocity.y < 0)
         {
             myAnimator.SetBool("Jump", false);
             playerVelocity.y = 0f;

@@ -6,11 +6,16 @@ using UnityEngine.AI;
 public class Police : MonoBehaviour
 {
     // States
-    public enum policeState { Walking, Stop, Spotted, CheckingArea, Whistle, Aim }
+    public enum policeState { Searching, Stop, Spotted, Investigating, Caught, Aim }
     [SerializeField] List<AudioClip> clips;
     [SerializeField] policeState state;
+    private bool startedSpotting = false;
+    private bool startedSearching = true;
+    private bool startedInvestigating = false;
+    private bool atInvestigationPoint = false;
 
     // Police Components
+    public Light lastSpottedLight;
     private Light policeLight;
     private AudioSource myAudio;
     public AudioSource spottedAudio;
@@ -20,7 +25,7 @@ public class Police : MonoBehaviour
     public NavMeshAgent myNma;
     public SpriteRenderer myspriteren;
     public float spotlightTime;
-
+    public float sightrotation;
 
     // Other GameObject References
     public GameManager gameman;
@@ -30,6 +35,7 @@ public class Police : MonoBehaviour
 
     void Start()
     {
+        lastSpottedLight.enabled = false;
         policeLight = gameObject.GetComponentInChildren<Light>();
         policeLight.enabled = false;
         myAudio = gameObject.GetComponent<AudioSource>();
@@ -42,16 +48,23 @@ public class Police : MonoBehaviour
     }
     private void PoliceState()
     {
-        print(state);
-        if (state == policeState.Walking)
+        // SEARCHING
+        if (state == policeState.Searching)
         {
-            print(myAudio.isPlaying);
-            policeLight.enabled = false;
-            // Police is on the move to destination
-            myNma.isStopped = false;
-            myAnimator.SetBool("Walking", true);
-            myAnimator.speed = 1f;
-            myNma.speed = 1.65f;
+            // ONLY HAPPENS ONCE
+            if (startedSearching)
+            {
+                lastSpottedLight.enabled = false;
+                policeLight.enabled = false;
+                // Police is on the move to destination
+                myNma.isStopped = false;
+                myAnimator.SetBool("Walking", true);
+                myAnimator.speed = 1f;
+                myNma.speed = 1.65f;
+                // Set Destination To TeleporterEnd
+                myNma.SetDestination(targetPosition.transform.position);
+                startedSearching = false;
+            }
             // Police Audio Matches PoliceAmbience Audio
             myAudio.time = gameman.GetComponent<AudioSource>().time;
             if (!myAudio.isPlaying)
@@ -59,87 +72,86 @@ public class Police : MonoBehaviour
                 myAudio.pitch = 1f;
                 myAudio.Play();
             }
-            // 3 fanned out Rays looking for PJohns
-            GeneralSight();
-            // Set Destination To TeleporterEnd
-            myNma.SetDestination(targetPosition.transform.position);
-            // If Police is at TeleporterEnd, stop walking
-            if (transform.position == targetPosition.transform.position)
-            {
-                myAnimator.SetBool("Walking", false);
-            }
             // If Police is at TeleporterEnd, destroy self
             float distance = Vector3.Distance(transform.position, targetPosition.transform.position);
             if (distance <= .3f)
             {
+                myAnimator.SetBool("Walking", false);
                 gameman.lowervolume = true;
                 Destroy(gameObject);
             }
+            // 3 fanned out Rays looking for PJohns
+            GeneralSight();
         }
         // SPOTTED
         if (state == policeState.Spotted)
         {
-            // If spotted, stop PoliceForce audio and stop walking
-            myAudio.Pause();
-            myNma.isStopped = true;
-            myAnimator.SetBool("Walking", false);
-            // Shoots a raycast that always looks at PJohns, but will hit Default and Interactable objects inbetween. 
-            HonedSight();
+            // ONLY HAPPENS ONCE
+            if (startedSpotting)
+            {
+                // If spotted, stop PoliceForce audio and stop walking
+                myAudio.Pause();
+                myNma.isStopped = true;
+                myAnimator.SetBool("Walking", false);
+                startedSpotting = false;
+            }
             if (spotted)
             {
-                if (!spottedAudio.isPlaying)
-                {
-                    spottedAudio.UnPause();
-                }
                 StartCoroutine(SpottingTimer());
                 IEnumerator SpottingTimer()
                 {
                     spotted = false;
                     yield return new WaitForSeconds(3);
                     myAnimator.SetBool("Walking", true);
-                    state = policeState.CheckingArea;
+                    startedInvestigating = true;
+                    state = policeState.Investigating;
                 }
             }
-            else if (!spotted)
-            {
-                spottedAudio.Pause();
-            }
+            // Shoots a raycast that always looks at PJohns, but will hit Default and Interactable objects inbetween. 
+            HonedSight();
         }
-        if (state == policeState.CheckingArea)
+        // INVESTIGATING
+        if (state == policeState.Investigating)
         {
-            if (!myAudio.isPlaying)
+            // ONLY PLAYS ONCE
+            if (startedInvestigating)
             {
                 myAudio.pitch = .3f;
                 myAudio.Play();
+                myAnimator.speed = .5f;
+                myNma.SetDestination(lastSpottedPoint);
+                myNma.speed = 1f;
+                myNma.isStopped = false;
+                atInvestigationPoint = true;
+                startedInvestigating = false;
             }
-            myAnimator.speed = .5f;
-            myNma.SetDestination(lastSpottedPoint);
-            myNma.speed = 1f;
-            myNma.isStopped = false;
-
             if (spotlightTime >= 3f)
             {
                 myAudio.pitch = 1f;
                 myAudio.PlayOneShot(clips[0], 1f);
-                state = policeState.Whistle;
+                state = policeState.Caught;
             }
+            // If you get to investigation place and haven't seen PJohns, wait 3s & return to Searching
             float distance = Vector3.Distance(transform.position, lastSpottedPoint);
-            if (distance <= .1f && spotted == false)
+            if (distance <= .3f && atInvestigationPoint)
             {
                 myNma.isStopped = true;
                 myAnimator.SetBool("Walking", false);
                 StartCoroutine(SecondTimer());
                 IEnumerator SecondTimer()
                 {
-                    spotted = true;
                     yield return new WaitForSeconds(3);
                     myAudio.pitch = 1f;
                     gameman.UnSpotted();
-                    state = policeState.Walking;
+                    startedSearching = true;
+                    state = policeState.Searching;
                 }
+                atInvestigationPoint = false;
             }
+            HonedSight();
         }
-        if (state == policeState.Whistle)
+        // CAUGHT
+        if (state == policeState.Caught)
         {
             myAnimator.SetBool("Whistle", true);
             myNma.SetDestination(player.transform.position);
@@ -148,64 +160,32 @@ public class Police : MonoBehaviour
     }
     private void GeneralSight()
     {
-        // Creates Raycasts fanning out in front of him
-        RaycastHit righthit;
-        RaycastHit middlehit;
-        RaycastHit lefthit;
+        // Creates 3 Raycasts fanning out in front of him
+        RaycastHit hit;
         LayerMask defaultLayerMask = 1 << 0;
         LayerMask playerLayerMask = 1 << 6;
         LayerMask interLayerMask = 1 << 8;
         LayerMask mask = defaultLayerMask | playerLayerMask | interLayerMask;
         Vector3 rayOrigin = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
-        var right45 = (transform.right - transform.forward).normalized * myNma.velocity.x;
-        var middle = (transform.right).normalized * myNma.velocity.x;
-        var left45 = (transform.right + transform.forward).normalized * myNma.velocity.x;
-
-        Vector3 raydirection = new Vector3(transform.localScale.x, 0f, 0f);
-        Debug.DrawRay(rayOrigin, right45 * 3f, Color.red);
-        Debug.DrawRay(rayOrigin, middle * 3f, Color.red);
-        Debug.DrawRay(rayOrigin, left45 * 3f, Color.red);
-
-        // If the raycast hits Player, go to SPOTTED mode. 
-        if (Physics.Raycast(rayOrigin, right45, out righthit, 3f, mask))
+        Vector3 currentPos = Vector3.back * 3f;
+        sightrotation += 520 * Time.deltaTime;
+        if (sightrotation >= 180)
         {
-            if (righthit.transform.tag == "Player")
+            sightrotation = 0f;
+        }
+        currentPos = Quaternion.Euler(0, sightrotation, 0) * currentPos;
+        Debug.DrawRay(rayOrigin, currentPos, Color.green);
+        // If the raycast hits Player, go to SPOTTED mode. 
+        if (Physics.Raycast(rayOrigin, currentPos, out hit, 3f, mask))
+        {
+            if (hit.transform.tag == "Player")
             {
                 spotted = true;
-                currentTarget = righthit.transform.gameObject;
-                lastSpottedPoint = righthit.point;
+                currentTarget = hit.transform.gameObject;
+                lastSpottedPoint = hit.point;
                 gameman.Spotted();
                 spottedAudio.Play();
-                state = policeState.Spotted;
-            }
-        }
-        else
-        {
-            spotted = false;
-        }
-        if (Physics.Raycast(rayOrigin, middle, out middlehit, 3f, mask))
-        {
-            if (middlehit.transform.tag == "Player")
-            {
-                spotted = true;
-                currentTarget = middlehit.transform.gameObject;
-                lastSpottedPoint = middlehit.point;
-                gameman.Spotted();
-                state = policeState.Spotted;
-            }
-        }
-        else
-        {
-            spotted = false;
-        }
-        if (Physics.Raycast(rayOrigin, left45 * 3f, out lefthit, 3f, mask))
-        {
-            if (lefthit.transform.tag == "Player")
-            {
-                spotted = true;
-                currentTarget = lefthit.transform.gameObject;
-                lastSpottedPoint = lefthit.point;
-                gameman.Spotted();
+                startedSpotting = true;
                 state = policeState.Spotted;
             }
         }
@@ -216,20 +196,24 @@ public class Police : MonoBehaviour
     }
     private void HonedSight()
     {
+        lastSpottedLight.enabled = true;
+        lastSpottedLight.transform.position = lastSpottedPoint;
         RaycastHit hit;
         LayerMask defaultLayerMask = 1 << 0;
         LayerMask playerLayerMask = 1 << 6;
         LayerMask interLayerMask = 1 << 8;
         LayerMask mask = defaultLayerMask | playerLayerMask | interLayerMask;
         Vector3 rayOrigin = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
-        Vector3 raydirection = new Vector3(transform.localScale.x, 0f, 0f);
         Debug.DrawRay(rayOrigin, (currentTarget.transform.position - rayOrigin) * 3f, Color.blue);
         if (Physics.Raycast(rayOrigin, (currentTarget.transform.position - rayOrigin), out hit, 10f, mask))
         {
             // If spotted PJohns, start 3 second countdown to chase. Have flashlight look at PJohns last location.
             if (hit.collider.tag == "Player")
             {
-                spotted = true;
+                if (!myAudio.isPlaying)
+                {
+                    spottedAudio.Play();
+                }
                 spotlightTime += Time.deltaTime;
                 lastSpottedPoint = hit.point;
                 policeLight.enabled = true;
@@ -237,6 +221,7 @@ public class Police : MonoBehaviour
             }
             else
             {
+                spottedAudio.Pause();
                 spotted = false;
             }
         }
@@ -253,8 +238,6 @@ public class Police : MonoBehaviour
             myspriteren.flipX = true;
         }
     }
-
-
     void Update()
     {
         PoliceState();
