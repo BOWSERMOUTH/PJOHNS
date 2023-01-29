@@ -133,7 +133,7 @@ Material:
     - _UV2TilingXYScaleZW: {r: 0, g: 0, b: 0, a: 0}
     - _WaveSpeed: {r: 1, g: -1, b: -1, a: 1}
     - _WorldLightDir: {r: 0, g: 0.1, b: -0.5, a: 0}
-    - _horizonColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0}
+    - _horizonColor: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 1}
     - horizonColor: {r: 0.615, g: 0.796, b: 0.876, a: 1}
     - uvParams: {r: 10, g: 0.02, b: 0.03, a: 0}
     - waveDirX: {r: -2.5, g: 0, b: 7, a: 8}

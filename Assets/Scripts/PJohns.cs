@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PJohns : MonoBehaviour
 {
+    public int policeticker = 1;
     public enum playerState { GeneralMovement, Falling, Crouch, Climb, Hide, Whisper, Freeze, MindControl, Frozen, Transition, SendAway, Ledge }
     //Config
     [SerializeField] playerState state;
@@ -483,8 +484,9 @@ public class PJohns : MonoBehaviour
                 state = playerState.GeneralMovement;
             }
         }
-        if (collider.gameObject.tag == "Danger")
+        if (collider.gameObject.tag == "Danger" && policeticker > 0)
         {
+            policeticker--;
             gamemanager.GetComponent<GameManager>().PoliceTime();
             Vector3 mypos = new Vector3((transform.position.x + 15f), transform.position.y, transform.position.z);
             Instantiate(policeGenerator, mypos, Quaternion.identity);

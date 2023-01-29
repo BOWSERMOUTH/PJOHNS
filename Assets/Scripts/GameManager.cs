@@ -55,9 +55,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 4), Quaternion.identity);
         player.name = "PJohns";
-        GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 0), Quaternion.identity);
+        GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 4), Quaternion.identity);
         hotdog.name = "Hotdog";
         CinemachineVirtualCamera cinemachine = GameObject.Find("FollowPlayer").GetComponent<CinemachineVirtualCamera>();
         cinemachine.Follow = player.transform;
