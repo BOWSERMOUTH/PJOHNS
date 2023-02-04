@@ -488,7 +488,7 @@ public class PJohns : MonoBehaviour
         {
             policeticker--;
             gamemanager.GetComponent<GameManager>().PoliceTime();
-            Vector3 mypos = new Vector3((transform.position.x + 15f), transform.position.y, transform.position.z);
+            Vector3 mypos = new Vector3((transform.position.x + 25f), transform.position.y, transform.position.z);
             Instantiate(policeGenerator, mypos, Quaternion.identity);
         }
         if (collider.gameObject.tag == "NotCaptured")

@@ -731,9 +731,9 @@ TextureImporter:
       name: People_11
       rect:
         serializedVersion: 2
-        x: 14
+        x: 12
         y: 306
-        width: 8
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -752,9 +752,9 @@ TextureImporter:
       name: People_12
       rect:
         serializedVersion: 2
-        x: 50
+        x: 49
         y: 306
-        width: 10
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -817,7 +817,7 @@ TextureImporter:
         serializedVersion: 2
         x: 155
         y: 306
-        width: 11
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -836,9 +836,9 @@ TextureImporter:
       name: People_16
       rect:
         serializedVersion: 2
-        x: 194
+        x: 192
         y: 306
-        width: 8
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -857,10 +857,10 @@ TextureImporter:
       name: People_17
       rect:
         serializedVersion: 2
-        x: 231
+        x: 228
         y: 306
-        width: 6
-        height: 32
+        width: 12
+        height: 33
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -878,9 +878,9 @@ TextureImporter:
       name: People_18
       rect:
         serializedVersion: 2
-        x: 265
+        x: 264
         y: 306
-        width: 9
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -901,7 +901,7 @@ TextureImporter:
         serializedVersion: 2
         x: 300
         y: 306
-        width: 11
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -920,9 +920,9 @@ TextureImporter:
       name: People_20
       rect:
         serializedVersion: 2
-        x: 336
+        x: 333
         y: 306
-        width: 7
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -941,9 +941,9 @@ TextureImporter:
       name: People_21
       rect:
         serializedVersion: 2
-        x: 366
+        x: 363
         y: 306
-        width: 7
+        width: 12
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -2950,14 +2950,14 @@ TextureImporter:
       People_53: 5634625901892015329
       People_56: 1279683756386921749
       People_49: 6978940606334488985
-      People_65: -1363837889817195452
+      People_45: -5081424553489416696
       People_79: -3323369232426681054
       People_28: -8510473849299607185
       People_41: -710970073396587055
       People_42: -4409599226808884971
       People_58: -6905184625798079974
       People_39: -4976202506109588303
-      People_45: -5081424553489416696
+      People_65: -1363837889817195452
       People_111: -8626729032820394089
       People_14: -2494227856016801477
       People_59: -4842581004079560866

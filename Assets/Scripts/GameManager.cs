@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public int fifteenminincrements;
 
     // GameObject References
+    public GameObject player;
+    public GameObject hotdog;
     public TMP_Text pigeoncount;
     public List<GameObject> gameObjects;
     private AudioSource myaudio;
@@ -55,10 +57,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 4), Quaternion.identity);
-        player.name = "PJohns";
-        GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 4), Quaternion.identity);
-        hotdog.name = "Hotdog";
+        if (player == null)
+        {
+            GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 4), Quaternion.identity);
+            player.name = "PJohns";
+        }
+        else
+        {
+            return;
+        }
+        if (hotdog == null)
+        {
+            GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 4), Quaternion.identity);
+            hotdog.name = "Hotdog";
+        }
         CinemachineVirtualCamera cinemachine = GameObject.Find("FollowPlayer").GetComponent<CinemachineVirtualCamera>();
         cinemachine.Follow = player.transform;
         myaudio = gameObject.GetComponent<AudioSource>();
