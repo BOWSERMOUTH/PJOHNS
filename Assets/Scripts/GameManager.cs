@@ -59,17 +59,17 @@ public class GameManager : MonoBehaviour
     {
         if (player == null)
         {
-            GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 4), Quaternion.identity);
-            player.name = "PJohns";
+            //GameObject player = Instantiate(gameObjects[0], new Vector3(0, 0, 4), Quaternion.identity);
+            //player.name = "PJohns";
         }
         else
         {
-            return;
+            //return;
         }
         if (hotdog == null)
         {
-            GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 4), Quaternion.identity);
-            hotdog.name = "Hotdog";
+            //GameObject hotdog = Instantiate(gameObjects[2], new Vector3(2f, 0, 4), Quaternion.identity);
+            //hotdog.name = "Hotdog";
         }
         CinemachineVirtualCamera cinemachine = GameObject.Find("FollowPlayer").GetComponent<CinemachineVirtualCamera>();
         cinemachine.Follow = player.transform;
